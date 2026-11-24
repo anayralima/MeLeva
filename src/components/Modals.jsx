@@ -42,9 +42,6 @@ function Invite({ onClose, props }) {
         <button className="share-btn share-btn--instagram" type="button" onClick={() => copy(url).then(() => toast("Link copiado! Cole no seu story do Instagram"))}>
           {Icon.instagram} Instagram
         </button>
-        <a className="share-btn" href={`mailto:?subject=${encodeURIComponent("Bora pro Me Leva?")}&body=${encodeURIComponent(`${text} ${url}`)}`}>
-          {Icon.mail} E-mail
-        </a>
       </div>
     </Modal>
   );
