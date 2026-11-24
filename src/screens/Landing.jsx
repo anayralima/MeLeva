@@ -72,7 +72,6 @@ export default function Landing() {
           <a href="#como-funciona">Como funciona</a>
           <a href="#atividades">Atividades</a>
           <a href="#esportes">Esportes</a>
-          <a href="#sobre">Sobre</a>
         </nav>
         <div className="nav__actions">
           {loggedIn ? (

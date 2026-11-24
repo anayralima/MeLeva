@@ -140,16 +140,6 @@ export default function Login({ next = "home" }) {
             Entrar
           </button>
 
-          <div className="divider">
-            <span />
-            ou
-            <span />
-          </div>
-
-          <button className="btn btn--lilac btn--block" type="button" onClick={demo}>
-            Continuar com Google
-          </button>
-
           <div className="demo-box">
             <strong>Conta de demonstração</strong>
             <span>
