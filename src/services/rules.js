@@ -392,6 +392,29 @@ export function acceptConnection(state, personId) {
   };
 }
 
+/** RF10: recusar pedido de conexão recebido (some da lista e da notificação). */
+export function declineConnection(state, personId) {
+  return { state: { ...state, notifications: state.notifications.filter((n) => n.request !== personId) }, result: "declined" };
+}
+
+/** RF10: cancelar um pedido de conexão que você enviou. */
+export function cancelConnectionRequest(state, personId) {
+  return { state: { ...state, pendingConnections: state.pendingConnections.filter((p) => p !== personId) }, result: "canceled" };
+}
+
+/** RF10: desfazer uma conexão. A mensagem direta deixa de estar disponível. */
+export function removeConnection(state, personId) {
+  if (!state.connections.includes(personId)) return { state, result: "not-connected" };
+  return { state: { ...state, connections: state.connections.filter((c) => c !== personId) }, result: "removed" };
+}
+
+/** Pedidos de conexão recebidos que ainda esperam resposta. */
+export function incomingRequests(state) {
+  return [...new Set(state.notifications.filter((n) => n.request).map((n) => n.request))].filter(
+    (id) => !state.connections.includes(id) && !state.blocked.includes(id),
+  );
+}
+
 /** Decisão pendente do grupo, assumida no MVP: mensagem direta só entre conectados. */
 export function canDirectMessage(state, personId) {
   return state.connections.includes(personId) && !state.blocked.includes(personId);

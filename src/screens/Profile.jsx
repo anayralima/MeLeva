@@ -56,7 +56,7 @@ export default function Profile() {
       <div className="stat-boxes">
         <div className="stat-box"><span className="stat-box__icon stat-box__icon--rose">{Icon.calendar}</span><span><strong>{mineAll.length}</strong><small>atividades</small></span></div>
         <div className="stat-box"><span className="stat-box__icon stat-box__icon--lilac">{Icon.compass}</span><span><strong>{me.km} km</strong><small>percorridos</small></span></div>
-        <a className="stat-box" href={link("notificacoes")}><span className="stat-box__icon stat-box__icon--blue">{Icon.users}</span><span><strong>{state.connections.length}</strong><small>conexões</small></span></a>
+        <a className="stat-box" href={link("conexoes")}><span className="stat-box__icon stat-box__icon--blue">{Icon.users}</span><span><strong>{state.connections.length}</strong><small>conexões</small></span></a>
         <div className="stat-box"><span className="stat-box__icon stat-box__icon--green">{Icon.star}</span><span><strong>{me.rating.toFixed(1)}</strong><small>avaliação média</small></span></div>
       </div>
 

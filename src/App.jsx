@@ -18,6 +18,7 @@ import PublicProfile from "./screens/PublicProfile.jsx";
 import Messages from "./screens/Messages.jsx";
 import Favorites from "./screens/Favorites.jsx";
 import Notifications from "./screens/Notifications.jsx";
+import Connections from "./screens/Connections.jsx";
 import RecoverPassword from "./screens/RecoverPassword.jsx";
 import Interests from "./screens/Interests.jsx";
 import InitialProfile from "./screens/InitialProfile.jsx";
@@ -48,6 +49,7 @@ const SCREENS = {
   mensagens: Messages,
   favoritos: Favorites,
   notificacoes: Notifications,
+  conexoes: Connections,
   interesses: Interests,
   "perfil-inicial": InitialProfile,
 };

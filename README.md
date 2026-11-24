@@ -27,7 +27,7 @@ _A preencher pelo grupo._
 - Conversar no chat da atividade e com pessoas conectadas.
 - **Criar atividade** com prévia ao vivo, salvar rascunho, editar e cancelar.
 - Ver Minhas atividades (próximas, criadas e histórico), avaliar e denunciar.
-- Perfil, perfil público, favoritos, notificações e preferências.
+- Perfil, perfil público, **conexões** (aceitar, recusar, desfazer), favoritos, notificações e preferências.
 
 As regras do documento de requisitos (endereço só para confirmados, lista de espera,
 bloqueio de login etc.) estão em

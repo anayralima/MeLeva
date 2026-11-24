@@ -9,7 +9,13 @@ import {
   blockPerson,
   canChat,
   canRate,
+  canDirectMessage,
   canSeeAddress,
+  cancelConnectionRequest,
+  declineConnection,
+  incomingRequests,
+  removeConnection,
+  requestConnection,
   filterActivities,
   findActivity,
   isStrongPassword,
@@ -182,5 +188,25 @@ describe("Segurança (RF26, RF31, RF32, RN11)", () => {
   it("atividades de quem você bloqueou somem da busca", () => {
     const { state } = blockPerson(fresh(), "rafael");
     expect(visibleActivities(state).find((a) => a.organizer === "rafael")).toBeUndefined();
+  });
+});
+
+describe("conexões", () => {
+  it("lista o pedido recebido da Beatriz e permite recusar", () => {
+    const state = fresh();
+    expect(incomingRequests(state)).toContain("beatriz");
+    expect(incomingRequests(declineConnection(state, "beatriz").state)).not.toContain("beatriz");
+  });
+
+  it("desfazer conexão tira a mensagem direta", () => {
+    const state = fresh();
+    expect(canDirectMessage(state, "lucas")).toBe(true);
+    expect(canDirectMessage(removeConnection(state, "lucas").state, "lucas")).toBe(false);
+  });
+
+  it("pedido enviado pode ser cancelado", () => {
+    const sent = requestConnection(fresh(), "pedro").state;
+    expect(sent.pendingConnections).toContain("pedro");
+    expect(cancelConnectionRequest(sent, "pedro").state.pendingConnections).not.toContain("pedro");
   });
 });

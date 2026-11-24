@@ -12,6 +12,18 @@ rastreabilidade versão ↔ commit — está em
 
 ## [Unreleased]
 
+### Added
+
+- **Tela de Conexões** (`#/conexoes`, aberta pelo card "conexões" do Perfil): abas de
+  conexões, pedidos recebidos e enviados, busca por nome, sugestões de pessoas com os
+  mesmos esportes, e ações de mensagem, desfazer, aceitar, recusar e cancelar.
+
+### Removed
+
+- "Sobre" do menu da Landing, botão "Continuar com Google" do Login, botão de e-mail do
+  modal "Chame a galera", e opção de público e toggle de custo em Criar atividade (agora é
+  só um aviso).
+
 ## [1.24.11.2026] - 2026-11-24
 
 MVP navegável: todas as telas do Figma funcionando com dados de demonstração salvos no
