@@ -1,0 +1,8 @@
+[
+  { "id": "n1", "type": "participant", "text": "Ana Ribeiro confirmou presença na sua Caminhada no Parque Nacional.", "minutesAgo": 35, "link": "atividade/caminhada-nacional", "read": false },
+  { "id": "n2", "type": "rain", "text": "Previsão de 70% de chuva no Futebol Society. Combine com o grupo se vai manter.", "minutesAgo": 120, "link": "atividade/futebol-society", "read": false },
+  { "id": "n3", "type": "connection", "text": "Beatriz Nunes quer se conectar com você.", "minutesAgo": 300, "link": "pessoa/beatriz", "read": false, "request": "beatriz" },
+  { "id": "n4", "type": "reminder", "text": "Amanhã tem Trilha Pedra do Sino às 06h. Separe a lanterna!", "minutesAgo": 1500, "link": "atividade/trilha-sino", "read": true },
+  { "id": "n5", "type": "nearby", "text": "Nova atividade perto de você: Beach tênis no Clube, hoje às 17h.", "minutesAgo": 3000, "link": "atividade/beach-clube", "read": true },
+  { "id": "n6", "type": "rate", "text": "Como foi o Pedal até o Soberbo? Conte pra gente.", "minutesAgo": 4000, "link": "avaliar/pedal-soberbo", "read": true }
+]

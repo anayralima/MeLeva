@@ -1,0 +1,20 @@
+{
+  "trilha-sino": [
+    { "from": "lucas", "text": "Pessoal, saída às 6h em ponto da portaria do PARNASO!", "minutesAgo": 300 },
+    { "from": "carla", "text": "Fechado. Levo um kit de primeiros socorros.", "minutesAgo": 240 },
+    { "from": "thiago", "text": "Alguém quer carona do Alto?", "minutesAgo": 90 }
+  ],
+  "corrida-parque": [
+    { "from": "juliana", "text": "Bom dia, galera! Confirmado pra sábado 7h ☀️", "minutesAgo": 200 },
+    { "from": "lucas", "text": "Fechou! Alguém quer carona do Alto?", "minutesAgo": 195 },
+    { "from": "juliana", "text": "Bora! Levo água pra todo mundo", "minutesAgo": 120 }
+  ],
+  "caminhada-nacional": [
+    { "from": "camila", "text": "Oba, primeira trilha da Ana! 🎉", "minutesAgo": 1500 },
+    { "from": "ana", "text": "Tô animada! Precisa de bota?", "minutesAgo": 1450 },
+    { "from": "me", "text": "Não precisa, tênis confortável resolve 🙂", "minutesAgo": 1440 }
+  ],
+  "dm:lucas": [
+    { "from": "lucas", "text": "Valeu pela corrida de sábado!", "minutesAgo": 1440 }
+  ]
+}
