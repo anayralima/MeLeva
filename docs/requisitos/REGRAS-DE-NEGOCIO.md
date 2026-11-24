@@ -14,7 +14,7 @@ Regras do documento de requisitos (seção 5) e onde cada uma está no MVP. As f
 | RN06 | Lotada continua visível, com selo e lista de espera. | Selo "Lotada" e botão "Entrar na lista de espera". | `isFull()`, `join()` |
 | RN07 | Cancelou → vaga vai ao próximo da fila. | O primeiro da fila é promovido e recebe notificação. | `leave()` |
 | RN08 | Quem cancela perde endereço e chat. | O status volta a "none" e as duas permissões caem. | `leave()` |
-| RN09 | Custo ou marca precisam estar na descrição. | Com "Tem custo ou divulgação de marca" ligado, a descrição precisa citar o custo. | `validateActivity()` |
+| RN09 | Custo ou marca precisam estar na descrição. | Aviso fixo em Criar atividade pedindo para citar custo ou marca na descrição. | `CreateActivity.jsx` |
 | RN10 | Avaliação é da atividade; pessoa é por denúncia. | Tela Avaliar só avalia a atividade; "Problema com uma pessoa? Denunciar" abre a denúncia separada. | `RateActivity.jsx` |
 | RN11 | Denúncia anônima com protocolo. | Gera protocolo `ML-AAAAMMDD-NNNN` e mostra o aviso "Em perigo? Ligue 190". | `reportPerson()`, `protocol()` |
 | RN12 | Avaliar só depois da data e só quem participou. | Botão "Avaliar" aparece apenas no histórico de quem participou. | `canRate()` |
@@ -32,7 +32,7 @@ posição provisória em cada uma. Elas são fáceis de trocar.
 
 | Decisão | O que o MVP faz hoje |
 | --- | --- |
-| Manter atividades "só para mulheres" e como garantir | Mantido como filtro e opção de público, com participação **autodeclarada**. |
+| Manter atividades "só para mulheres" e como garantir | Mantido só como filtro no Explorar (atividades de exemplo). A opção saiu de Criar atividade. |
 | Aprovar o plano Organizador | Aparece apenas como "Em breve". |
 | Modelo de cobrança | Fora do MVP. Nada é cobrado. |
 | Preços R$ 9,90 / R$ 29,90 | Não aparecem no app. |

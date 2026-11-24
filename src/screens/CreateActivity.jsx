@@ -1,6 +1,6 @@
 import { useState } from "react";
 import AppShell from "../components/AppShell.jsx";
-import { ActivityCard, go, PageHead, Toggle } from "../components/ui.jsx";
+import { ActivityCard, go, PageHead } from "../components/ui.jsx";
 import { Icon } from "../icons.jsx";
 import { useStore } from "../store.jsx";
 import { findActivity, LEVELS, saveActivity, validateActivity } from "../services/rules.js";
@@ -238,28 +238,16 @@ export default function CreateActivity({ param }) {
                 {err("spots")}
               </div>
             </div>
-            <fieldset>
-              <legend className="label">Público</legend>
-              <div className="chips">
-                {["Todos", "Só mulheres"].map((a) => (
-                  <button key={a} type="button" aria-pressed={form.audience === a} className={form.audience === a ? "chip chip--active" : "chip"} onClick={() => set("audience", a)}>
-                    {a}
-                  </button>
-                ))}
-              </div>
-              {form.audience === "Só mulheres" && <small className="hint">Participação autodeclarada (decisão provisória do grupo).</small>}
-            </fieldset>
 
             <div className="cost-box">
               <span className="cost-box__icon">{Icon.info}</span>
               <span>
-                <strong>Essa atividade tem custo ou divulgação de marca?</strong>
+                <strong>Atividades entre pessoas são sempre grátis.</strong>
                 <small>
-                  Atividades entre pessoas são sempre grátis. Se houver custo (ex.: aluguel de quadra), diga na descrição.{" "}
+                  Se houver custo (ex.: aluguel de quadra) ou divulgação de marca, avise na descrição.{" "}
                   <button type="button" className="text-btn" onClick={() => openModal("plano")}>Pagas e patrocinadas: plano Organizador (em breve)</button>
                 </small>
               </span>
-              <Toggle checked={form.hasCost} onChange={(v) => set("hasCost", v)} label="Tem custo ou divulgação de marca" />
             </div>
 
             <label className="field">

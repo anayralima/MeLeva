@@ -91,7 +91,7 @@ Protótipo no Figma: [Me Leva — MVP Front-end](https://www.figma.com/design/sN
 O documento de requisitos deixa 5 decisões para o grupo. O MVP adota uma posição provisória
 em cada uma (detalhes em [REGRAS-DE-NEGOCIO.md](docs/requisitos/REGRAS-DE-NEGOCIO.md#decisões-pendentes-do-grupo)):
 
-- "Só para mulheres" fica como filtro, com participação autodeclarada.
+- "Só para mulheres" fica só como filtro no Explorar; não dá para criar atividade com essa restrição.
 - Mensagem direta só entre pessoas conectadas.
 - Plano Organizador e cobrança aparecem apenas como "Em breve".
 
