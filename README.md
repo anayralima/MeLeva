@@ -40,6 +40,31 @@ Acesse **https://meleva.aguiartechnology.com.br/** e entre com a conta de teste:
 
 Também dá para clicar em "Entrar como Mariana" na tela de login.
 
+## Histórico do projeto
+
+O projeto começou no repositório de um dos integrantes,
+[enzoguinossi/MeLevaFeso](https://github.com/enzoguinossi/MeLevaFeso). Lá estão os
+primeiros envios, de 26/09 a 03/11/2026: a estrutura em React, as telas Landing, Login,
+Início e Cadastro, o armazenamento no navegador e a documentação de requisitos. Para
+terminar o MVP, a equipe copiou esse trabalho para este repositório e continuou a partir
+dele. Por isso o primeiro envio daqui já traz o projeto quase completo.
+
+## Como usamos IA
+
+Usamos ferramentas de inteligência artificial como apoio, principalmente para:
+
+- montar e refinar as telas do protótipo no Figma;
+- escrever e revisar o código das telas a partir do protótipo;
+- organizar a documentação e checar contraste e acessibilidade.
+
+As decisões do produto foram da equipe: o problema escolhido, o público, as regras de
+negócio e os fluxos. Entre elas: não existir "aprovar participante", para evitar
+discriminação; mostrar o endereço exato só para quem confirmou presença, inclusive quando
+a atividade lota; separar a avaliação (da atividade) da denúncia (de uma pessoa, com
+protocolo); permitir reportar atividades pagas ou de marca sem aviso; e deixar o Plano
+Organizador como modelo de negócio futuro. Todo o conteúdo gerado foi revisado e
+ajustado pela equipe.
+
 ## Informações adicionais
 
 - **Organização do repositório**
