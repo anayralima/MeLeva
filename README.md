@@ -10,7 +10,16 @@
 
 ## Situação-problema
 
-_A preencher pela equipe._
+Muita gente quer praticar atividade física, mas desiste por não ter companhia. Quem procura
+um grupo encontra tudo espalhado em grupos de WhatsApp e redes sociais, difíceis de achar
+para quem é novo na atividade ou na cidade. Além disso, combinar um treino com
+desconhecidos traz insegurança: não se sabe quem vai estar lá, e local e horário ficam
+expostos para qualquer pessoa.
+
+Teresópolis (RJ) tem serra, trilhas e parques, mas não tem um lugar que reúna quem quer
+praticar junto. O Me Leva resolve isso conectando pessoas da cidade para praticarem
+atividades físicas em grupo, no lugar, no horário e no nível certo, com segurança e de
+graça.
 
 ## Descrição do MVP
 
