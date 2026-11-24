@@ -22,18 +22,14 @@ graça. O endereço exato e o chat ficam visíveis só para quem confirmou prese
 Este MVP é um front-end navegável feito em React. Todas as telas do protótipo funcionam
 com dados de demonstração, que ficam salvos no navegador.
 
-## Como executar localmente
+## Como acessar
 
-É preciso ter o [Node.js](https://nodejs.org/) 20 ou mais recente.
+Acesse **https://meleva.aguiartechnology.com.br/** e entre com a conta de teste:
 
-```bash
-npm install
-npm run dev    # abre em http://localhost:5173
-npm test       # roda os testes das regras de negócio
-```
+- **E-mail:** `mariana@meleva.app`
+- **Senha:** `MeLeva@2026`
 
-Para entrar, use a conta de demonstração `mariana@meleva.app` com a senha `MeLeva@2026`,
-ou clique em "Entrar como Mariana" na tela de login.
+Também dá para clicar em "Entrar como Mariana" na tela de login.
 
 ## Informações adicionais
 
