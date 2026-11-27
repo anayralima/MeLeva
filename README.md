@@ -2,11 +2,13 @@
 
 ## Integrantes da equipe
 
-| Nome | Matrícula | Papel |
-| --- | --- | --- |
-| _a preencher_ | | |
-| _a preencher_ | | |
-| _a preencher_ | | |
+| Nome | Matrícula |
+| --- | --- |
+| Enzo Guinossi | 06018240 |
+| Gabrielle Chagas | 06019303 |
+| Manuelly Mota | 06017897 |
+| Nayra Lima | 01023039 |
+| Thalita Ferraz | 06017720 |
 
 ## Situação-problema
 

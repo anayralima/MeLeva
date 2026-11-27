@@ -195,7 +195,7 @@ export default function ActivityDetails({ param }) {
             <div className="safety">
               <div><span>{Icon.shield}</span><strong>{organizer.verified ? "Organizador(a) verificado(a)" : "E-mail e celular confirmados"}</strong><small>{organizer.verified ? "E-mail, celular e boa reputação" : "Confira as avaliações antes de ir"}</small></div>
               <div><span>{Icon.mapPin}</span><strong>Encontro em local público</strong><small>Ponto de encontro movimentado</small></div>
-              <div><span>{Icon.users}</span><strong>Avise alguém de confiança</strong><small>Compartilhe sua localização no dia</small></div>
+              <div><span>{Icon.users}</span><strong>Avise alguém de confiança</strong><small>Compartilhe sua localização de 1h antes até 1h depois</small></div>
             </div>
             <div className="safety__links">
               <button className="text-btn" type="button" onClick={() => openModal("reportar", { activityId: activity.id })}>
@@ -248,7 +248,7 @@ export default function ActivityDetails({ param }) {
               )
             ) : status === "waitlist" ? (
               <>
-                <p className="alert alert--lilac">{Icon.clock} Você é o <strong>{waitlistPosition(activity)}º da fila</strong>. Avisamos se uma vaga abrir.</p>
+                <p className="alert alert--lilac">{Icon.clock} <span>Você está em <strong>{waitlistPosition(activity)}º lugar na fila</strong>. Avisamos se uma vaga abrir.</span></p>
                 <button className="btn btn--lilac btn--block" type="button" onClick={handleLeave}>Sair da lista de espera</button>
               </>
             ) : (

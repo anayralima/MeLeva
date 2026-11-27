@@ -24,6 +24,14 @@ rastreabilidade versão ↔ commit — está em
   atividades que a pessoa concluiu nos últimos 7 dias, somando o percurso informado por quem
   criou cada atividade. O gráfico acende os dias com atividade. Antes os valores eram fixos.
 - Teste da lista de espera usa a data atual, para não falhar depois da data do seed.
+- **Contato de confiança** (RF-034): o aviso vale de 1h antes até 1h depois da atividade; os
+  textos de Detalhes, Participação confirmada e Editar perfil agora dizem o mesmo.
+- Detalhes: o aviso da lista de espera não se quebra mais em colunas e ficou em linguagem neutra
+  ("Você está em 2º lugar na fila").
+- Detalhes: os quadros Distância, Ritmo, Nível e Vagas passam para 2 por linha quando falta
+  espaço; antes o quadro Vagas ficava escondido em telas médias.
+- Dados de exemplo sem dia da semana fixo no texto (as datas mudam conforme o dia de hoje).
+- Testes de conexões e do "Sua semana" agora citam os requisitos RF10 e RF11.
 
 ### Removed
 

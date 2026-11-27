@@ -65,14 +65,14 @@ export default function Confirmed({ param }) {
               <span className="trust__icon">{Icon.shield}</span>
               <span>
                 <strong>Avisar um contato de confiança</strong>
-                <small>{trust.name} • recebe sua localização durante a atividade</small>
+                <small>{trust.name} • recebe sua localização de 1h antes até 1h depois da atividade</small>
               </span>
               <Toggle
                 checked={trust.enabled}
                 label="Avisar um contato de confiança"
                 onChange={(enabled) => {
                   update((s) => ({ ...s, trustContact: { ...s.trustContact, enabled } }));
-                  toast(enabled ? `${trust.name} vai receber sua localização no dia` : "Contato de confiança desligado");
+                  toast(enabled ? `${trust.name} vai receber sua localização de 1h antes até 1h depois da atividade` : "Contato de confiança desligado");
                 }}
               />
             </div>

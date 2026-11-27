@@ -194,7 +194,7 @@ describe("Segurança (RF26, RF31, RF32, RN11)", () => {
   });
 });
 
-describe("conexões", () => {
+describe("Conexões (RF10)", () => {
   it("lista o pedido recebido da Beatriz e permite recusar", () => {
     const state = fresh();
     expect(incomingRequests(state)).toContain("beatriz");
@@ -214,7 +214,7 @@ describe("conexões", () => {
   });
 });
 
-describe("Sua semana (Início)", () => {
+describe("Sua semana no Início (RF11)", () => {
   const NOW = new Date("2026-11-24T10:00:00").getTime();
 
   it("lê o percurso informado pelo organizador", () => {

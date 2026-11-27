@@ -82,7 +82,7 @@ export default function EditProfile() {
                 </label>
               </div>
               <div className="switch-row">
-                <span><strong>Avisar automaticamente</strong><small>Envia sua localização durante cada atividade</small></span>
+                <span><strong>Avisar automaticamente</strong><small>Envia sua localização de 1h antes até 1h depois de cada atividade</small></span>
                 <Toggle checked={trust.enabled} onChange={(v) => setTrust({ ...trust, enabled: v })} label="Avisar contato de confiança automaticamente" />
               </div>
             </section>
