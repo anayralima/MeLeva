@@ -23,11 +23,13 @@ import {
   leave,
   mapPosition,
   rateActivity,
+  routeKm,
   reportPerson,
   sendMessage,
   statusOf,
   validateActivity,
   visibleActivities,
+  weekSummary,
 } from "../src/services/rules.js";
 
 const fresh = () => createSeed(new Date("2026-11-24T10:00:00").getTime());
@@ -58,7 +60,8 @@ describe("Confirmar presença (RF18, RN02, RN03, RN05)", () => {
 
 describe("Lista de espera (RF19, RF20, RN06, RN07, RN08)", () => {
   it("atividade lotada coloca na lista de espera, sem acesso ao chat", () => {
-    let state = fresh();
+    // Usa a data de hoje: `join` confere o relógio real, e o futebol do seed precisa ser futuro.
+    let state = createSeed(Date.now());
     state = leave(state, "futebol-society").state; // sai da fila do seed
     const { state: next, result } = join(state, "futebol-society");
     const activity = findActivity(next, "futebol-society");
@@ -208,5 +211,30 @@ describe("conexões", () => {
     const sent = requestConnection(fresh(), "pedro").state;
     expect(sent.pendingConnections).toContain("pedro");
     expect(cancelConnectionRequest(sent, "pedro").state.pendingConnections).not.toContain("pedro");
+  });
+});
+
+describe("Sua semana (Início)", () => {
+  const NOW = new Date("2026-11-24T10:00:00").getTime();
+
+  it("lê o percurso informado pelo organizador", () => {
+    expect(routeKm({ stats: { distance: "24 km" } })).toBe(24);
+    expect(routeKm({ stats: { distance: "1.500 m" } })).toBe(1.5);
+    expect(routeKm({ stats: { distance: "Quadra" } })).toBe(0);
+  });
+
+  it("soma só as atividades que a pessoa já fez nos últimos 7 dias", () => {
+    const week = weekSummary(fresh(), NOW);
+    expect(week.done).toBe(1);
+    expect(week.km).toBe(24);
+    expect(week.days).toHaveLength(7);
+  });
+
+  it("não conta atividade futura nem de quem não confirmou", () => {
+    const state = fresh();
+    const week = weekSummary(state, NOW);
+    const future = state.activities.filter((a) => new Date(a.start).getTime() > NOW);
+    expect(future.length).toBeGreaterThan(0);
+    expect(week.done).toBe(1);
   });
 });

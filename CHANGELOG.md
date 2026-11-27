@@ -18,6 +18,13 @@ rastreabilidade versão ↔ commit — está em
   conexões, pedidos recebidos e enviados, busca por nome, sugestões de pessoas com os
   mesmos esportes, e ações de mensagem, desfazer, aceitar, recusar e cancelar.
 
+### Changed
+
+- **Sua semana** (Início): "feitas" e "km percorridos" agora são calculados a partir das
+  atividades que a pessoa concluiu nos últimos 7 dias, somando o percurso informado por quem
+  criou cada atividade. O gráfico acende os dias com atividade. Antes os valores eram fixos.
+- Teste da lista de espera usa a data atual, para não falhar depois da data do seed.
+
 ### Removed
 
 - "Sobre" do menu da Landing, botão "Continuar com Google" do Login, botão de e-mail do

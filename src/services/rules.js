@@ -90,6 +90,58 @@ export function canRate(state, activity, now = Date.now(), userId = ME) {
   return !state.ratings[activity.id];
 }
 
+/**
+ * Percurso informado por quem criou a atividade ("24 km", "1.500 m"), em km.
+ * Textos sem distância ("Quadra", "Sem deslocamento") contam 0.
+ */
+export function routeKm(activity) {
+  const match = /(\d[\d.,]*)\s*(km|m)\b/i.exec(activity?.stats?.distance ?? "");
+  if (!match) return 0;
+  const [, number, unit] = match;
+  const value = unit.toLowerCase() === "m"
+    ? Number(number.replace(/\./g, "").replace(",", ".")) / 1000
+    : Number(number.replace(",", "."));
+  return Number.isFinite(value) ? value : 0;
+}
+
+/**
+ * Resumo "Sua semana" do Início: atividades que a pessoa já fez nos últimos
+ * 7 dias (confirmou presença ou organizou, e já terminaram), a soma dos
+ * percursos dessas atividades e os km de cada dia, para o gráfico.
+ */
+export function weekSummary(state, now = Date.now(), userId = ME) {
+  const first = new Date(now);
+  first.setHours(0, 0, 0, 0);
+  first.setDate(first.getDate() - 6);
+  const days = Array.from({ length: 7 }, (_, i) => {
+    const date = new Date(first);
+    date.setDate(first.getDate() + i);
+    return { date: date.getTime(), km: 0, count: 0 };
+  });
+
+  const done = state.activities.filter((activity) => {
+    const status = statusOf(activity, userId);
+    return (status === "confirmed" || status === "organizer")
+      && activity.status === "published"
+      && new Date(activity.start).getTime() >= first.getTime()
+      && isPast(activity, now);
+  });
+
+  for (const activity of done) {
+    const start = new Date(activity.start);
+    start.setHours(0, 0, 0, 0);
+    const day = days[Math.round((start.getTime() - first.getTime()) / 86400000)];
+    if (day) {
+      day.km += routeKm(activity);
+      day.count += 1;
+    }
+  }
+
+  const round = (value) => Math.round(value * 10) / 10;
+  days.forEach((day) => { day.km = round(day.km); });
+  return { done: done.length, km: round(done.reduce((total, a) => total + routeKm(a), 0)), days };
+}
+
 /** Atividades visíveis: publicadas, sem organizador bloqueado. */
 export function visibleActivities(state) {
   return state.activities.filter(

@@ -2,8 +2,8 @@ import AppShell from "../components/AppShell.jsx";
 import { ActivityCard, LevelTag, link, MapView } from "../components/ui.jsx";
 import { Icon } from "../icons.jsx";
 import { useStore } from "../store.jsx";
-import { isPast, requestConnection, statusOf, visibleActivities } from "../services/rules.js";
-import { dayDiff, friendlyWhen, place } from "../utils/format.js";
+import { isPast, requestConnection, statusOf, visibleActivities, weekSummary } from "../services/rules.js";
+import { dayDiff, friendlyWhen, km, place } from "../utils/format.js";
 
 const SPORT_CHIPS = ["Corrida", "Trilha", "Ciclismo", "Futebol", "Yoga", "Vôlei", "Beach tênis", "Natação"];
 
@@ -37,7 +37,8 @@ export default function Home() {
     .slice(0, 3);
 
   const weekDays = ["D", "S", "T", "Q", "Q", "S", "S"];
-  const today = new Date().getDay();
+  const week = weekSummary(state);
+  const maxDayKm = Math.max(0, ...week.days.map((day) => day.km));
 
   return (
     <AppShell active="home">
@@ -144,22 +145,23 @@ export default function Home() {
                 <span>agendadas</span>
               </div>
               <div>
-                <strong>8,4 km</strong>
-                <span>percorridos</span>
+                <strong>{week.done}</strong>
+                <span>{week.done === 1 ? "feita" : "feitas"}</span>
               </div>
               <div>
-                <strong>3 dias</strong>
-                <span>seguidos</span>
+                <strong>{week.km === 0 ? "0 km" : km(week.km)}</strong>
+                <span>percorridos</span>
               </div>
             </div>
 
             <div className="week-chart" aria-hidden="true">
-              {weekDays.map((day, index) => {
-                const active = [1, 3, today].includes(index);
+              {week.days.map((day) => {
+                const active = day.count > 0;
+                const height = !active ? 30 : maxDayKm > 0 ? 45 + Math.round((day.km / maxDayKm) * 55) : 60;
                 return (
-                  <div className="week-chart__col" key={`${day}-${index}`}>
-                    <span className={active ? "week-chart__bar week-chart__bar--on" : "week-chart__bar"} style={{ height: `${active ? 60 + index * 6 : 30}%` }} />
-                    <small>{day}</small>
+                  <div className="week-chart__col" key={day.date}>
+                    <span className={active ? "week-chart__bar week-chart__bar--on" : "week-chart__bar"} style={{ height: `${height}%` }} />
+                    <small>{weekDays[new Date(day.date).getDay()]}</small>
                   </div>
                 );
               })}
