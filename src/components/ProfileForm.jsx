@@ -24,12 +24,12 @@ function toggleIn(list, value) {
 export default function ProfileForm({ form, setForm, errors = {}, withSports = false }) {
   const set = (key, value) => setForm({ ...form, [key]: value });
   return (
-    <div className="form-stack">
-      <fieldset className="avatar-pick">
+    <div className="flex flex-col gap-4.5">
+      <fieldset className="[&_legend]:text-[13px] [&_legend]:font-semibold">
         <legend>Foto</legend>
-        <div className="avatar-pick__list">
+        <div className="my-2 mx-0 flex flex-wrap gap-2.5">
           {AVATARS.map((src, index) => (
-            <label key={src} className={form.avatar === src ? "avatar-pick__item is-active" : "avatar-pick__item"}>
+            <label key={src} className={form.avatar === src ? "is-active border-3 border-rosa relative rounded-full cursor-pointer [&_input]:absolute [&_input]:opacity-0 [&_img]:size-13 [&_img]:rounded-full [&_img]:object-cover focus-within:shadow-[var(--foco)]" : "border-3 border-transparent relative rounded-full cursor-pointer [&_input]:absolute [&_input]:opacity-0 [&_img]:size-13 [&_img]:rounded-full [&_img]:object-cover focus-within:shadow-[var(--foco)]"}>
               <input type="radio" name="avatar" checked={form.avatar === src} onChange={() => set("avatar", src)} />
               <img src={src} alt={`Foto ${index + 1}`} />
             </label>
@@ -38,17 +38,17 @@ export default function ProfileForm({ form, setForm, errors = {}, withSports = f
         <small className="hint">{Icon.camera} No app final, você envia uma foto sua. Aqui, escolha uma das opções.</small>
       </fieldset>
 
-      <div className="form-grid">
+      <div className="grid grid-cols-[1fr_1fr] gap-4 max-md:grid-cols-[1fr]">
         <label className="field">
           <span>Cidade</span>
-          <span className="field__box field__box--readonly">
-            <span className="field__icon">{Icon.pin}</span>
+          <span className="field-box field-box--readonly">
+            <span className="field-icon">{Icon.pin}</span>
             <input value="Teresópolis, RJ" readOnly aria-readonly="true" />
           </span>
         </label>
         <label className="field">
           <span>Idade</span>
-          <span className={errors.age ? "field__box field__box--error" : "field__box"}>
+          <span className={errors.age ? "field-box field-box--error" : "field-box"}>
             <input type="number" min="18" max="99" value={form.age} onChange={(e) => set("age", e.target.value)} aria-invalid={Boolean(errors.age)} />
           </span>
           {errors.age && <small className="form-error">{errors.age}</small>}
@@ -68,7 +68,7 @@ export default function ProfileForm({ form, setForm, errors = {}, withSports = f
 
       <fieldset>
         <legend className="label">Disponibilidade</legend>
-        <div className="chips chips--wrap">
+        <div className="flex gap-2 flex-wrap">
           {AVAILABILITY.map((slot) => {
             const on = form.availability.includes(slot);
             return (
@@ -84,7 +84,7 @@ export default function ProfileForm({ form, setForm, errors = {}, withSports = f
       {withSports && (
         <fieldset>
           <legend className="label">Esportes (mínimo 3)</legend>
-          <div className="chips chips--wrap">
+          <div className="flex gap-2 flex-wrap">
             {SPORTS.map((sport) => {
               const on = form.sports.includes(sport);
               return (
@@ -109,16 +109,16 @@ export default function ProfileForm({ form, setForm, errors = {}, withSports = f
 
 export function ProfilePreview({ form, name }) {
   return (
-    <div className="profile-preview">
+    <div className="p-6 sticky top-4 flex flex-col items-center gap-2 rounded-[20px] bg-pagina text-center max-xl:static [&_img]:size-24 [&_img]:rounded-full [&_img]:object-cover [&_strong]:text-[18px] [&_p]:text-[14px] [&_p]:text-secundario">
       <span className="label">Prévia do seu perfil</span>
       <img src={form.avatar} alt="" />
       <strong>{name}</strong>
-      <span className="profile-preview__meta">
+      <span className="text-[13px] text-secundario">
         Teresópolis, RJ{form.age ? ` • ${form.age} anos` : ""}
       </span>
       {form.level && <span className="tag tag--blue">{form.level}</span>}
       <p>{form.bio || "Sua bio aparece aqui."}</p>
-      <div className="chips chips--wrap chips--center">
+      <div className="flex gap-2 flex-wrap justify-center">
         {(form.sports ?? []).slice(0, 4).map((s) => (
           <span key={s} className="tag tag--lilac">{s}</span>
         ))}

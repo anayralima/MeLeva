@@ -50,14 +50,14 @@ export default function EditProfile() {
           <button className="btn btn--gradient" type="submit">{Icon.check} Salvar</button>
         </PageHead>
 
-        <div className="edit">
+        <div className="grid grid-cols-[minmax(0,1fr)_360px] gap-5 items-start max-2xl:grid-cols-[minmax(0,1fr)_300px] max-xl:grid-cols-[1fr]">
           <div className="card">
             <ProfileForm form={form} setForm={setForm} errors={errors} withSports />
           </div>
 
-          <aside className="edit__side">
+          <aside className="flex flex-col gap-4">
             <section className="card">
-              <h2 className="h3">Privacidade</h2>
+              <h2 className="text-[16px] font-bold">Privacidade</h2>
               <div className="switch-row">
                 <span><strong>Mostrar minha idade</strong><small>Aparece no seu perfil público</small></span>
                 <Toggle checked={privacy.showAge} onChange={(v) => setPrivacy({ ...privacy, showAge: v })} label="Mostrar minha idade" />
@@ -70,15 +70,15 @@ export default function EditProfile() {
             </section>
 
             <section className="card">
-              <h2 className="h3">Contato de confiança</h2>
-              <div className="form-grid">
+              <h2 className="text-[16px] font-bold">Contato de confiança</h2>
+              <div className="grid grid-cols-[1fr_1fr] gap-4 max-md:grid-cols-[1fr]">
                 <label className="field">
                   <span>Nome</span>
-                  <span className="field__box"><input value={trust.name} onChange={(e) => setTrust({ ...trust, name: e.target.value })} /></span>
+                  <span className="field-box"><input value={trust.name} onChange={(e) => setTrust({ ...trust, name: e.target.value })} /></span>
                 </label>
                 <label className="field">
                   <span>Celular</span>
-                  <span className="field__box"><input type="tel" value={trust.phone} onChange={(e) => setTrust({ ...trust, phone: e.target.value })} /></span>
+                  <span className="field-box"><input type="tel" value={trust.phone} onChange={(e) => setTrust({ ...trust, phone: e.target.value })} /></span>
                 </label>
               </div>
               <div className="switch-row">
@@ -89,8 +89,8 @@ export default function EditProfile() {
 
             {state.blocked.length > 0 && (
               <section className="card">
-                <h2 className="h3">Pessoas bloqueadas</h2>
-                <ul className="who">
+                <h2 className="text-[16px] font-bold">Pessoas bloqueadas</h2>
+                <ul className="who flex flex-col gap-3 list-none [&_li]:flex [&_li]:items-center [&_li]:gap-2.5 [&_img]:size-9 [&_img]:rounded-full [&_img]:object-cover [&_li>span]:flex [&_li>span]:flex-1 [&_li>span]:flex-col [&_li>span]:text-[14px] [&_small]:text-[12px] [&_small]:text-secundario">
                   {state.blocked.map((id) => (
                     <li key={id}>
                       <img src={user(id).avatar} alt="" />
@@ -112,8 +112,8 @@ export default function EditProfile() {
             )}
 
             <section className="card">
-              <h2 className="h3">Conta</h2>
-              <div className="account-actions">
+              <h2 className="text-[16px] font-bold">Conta</h2>
+              <div className="flex flex-col gap-2.5">
                 <button className="btn btn--lilac btn--block" type="button" onClick={() => openModal("termos")}>{Icon.shield} Termos e privacidade</button>
                 <button className="btn btn--lilac btn--block" type="button" onClick={logout}>{Icon.logout} Sair da conta</button>
                 <button
@@ -135,7 +135,7 @@ export default function EditProfile() {
                   Restaurar demonstração
                 </button>
                 <button
-                  className="text-btn text-btn--danger"
+                  className="p-0 border-0 inline-flex items-center gap-1.5 bg-transparent text-[13px] font-semibold underline [text-underline-offset:2px] cursor-pointer text-erro [&_svg]:size-4 [&_svg]:shrink-0 [.safety-links_&]:text-secundario [.safety-links_&]:no-underline [.safety-links--col_&]:text-erro"
                   type="button"
                   onClick={() =>
                     openModal("confirmar", {

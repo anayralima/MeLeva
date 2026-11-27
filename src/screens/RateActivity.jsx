@@ -43,31 +43,31 @@ export default function RateActivity({ param }) {
 
   return (
     <AppShell active="minhas">
-      <form className="rate card" onSubmit={submit}>
-        <header className="rate__head">
+      <form className="card my-0 mx-auto max-w-190 gap-5.5" onSubmit={submit}>
+        <header className="flex items-center gap-4 max-md:flex-col max-md:items-start [&_img]:size-24 [&_img]:rounded-[16px] [&_img]:object-cover [&_h1]:text-[24px] [&_h1]:font-extrabold [&_p]:text-[14px] [&_p]:text-secundario">
           <img src={activity.image} alt="" />
           <div>
-            <small className="muted">{shortDate(activity.start)}</small>
+            <small className="text-secundario [&_svg]:size-4 [&_svg]:shrink-0 [.profile-head-info_&]:flex [.profile-head-info_&]:flex-wrap [.profile-head-info_&]:items-center [.profile-head-info_&]:gap-1 [.profile-head-info_&]:text-[13px]">{shortDate(activity.start)}</small>
             <h1>Como foi {activity.title}?</h1>
             <p>Sua avaliação é da atividade e ajuda outras pessoas a escolher.</p>
           </div>
         </header>
 
-        <fieldset className="rate__stars">
+        <fieldset className="[&>div]:flex [&>div]:items-center [&>div]:gap-1.5">
           <legend className="label">Sua nota</legend>
           <div role="radiogroup" aria-label="Nota de 1 a 5">
             {[1, 2, 3, 4, 5].map((n) => (
-              <button key={n} type="button" role="radio" aria-checked={stars === n} aria-label={`${n} estrela${n > 1 ? "s" : ""}`} className={n <= stars ? "star is-on" : "star"} onClick={() => { setStars(n); setError(""); }}>
+              <button key={n} type="button" role="radio" aria-checked={stars === n} aria-label={`${n} estrela${n > 1 ? "s" : ""}`} className={n <= stars ? "p-1.5 border-0 size-11 bg-transparent cursor-pointer text-[#f5b301] [&_svg_path]:[fill:currentColor]" : "p-1.5 border-0 size-11 bg-transparent text-[#d9d3e6] cursor-pointer"} onClick={() => { setStars(n); setError(""); }}>
                 {Icon.star}
               </button>
             ))}
-            <span className="rate__label">{LABELS[stars]}</span>
+            <span className="ml-2 font-bold text-rosa-texto">{LABELS[stars]}</span>
           </div>
         </fieldset>
 
         <fieldset>
           <legend className="label">O que foi legal?</legend>
-          <div className="chips chips--wrap">
+          <div className="flex gap-2 flex-wrap">
             {TAGS.map((tag) => {
               const on = tags.includes(tag);
               return (
@@ -100,10 +100,10 @@ export default function RateActivity({ param }) {
 
         {error && <p className="form-error" role="alert">{error}</p>}
 
-        <div className="rate__foot">
-          <div className="safety__links">
-            <button className="text-btn" type="button" onClick={() => openModal("reportar", { activityId: activity.id })}>{Icon.alert} Reportar a atividade</button>
-            <button className="text-btn" type="button" onClick={() => openModal("denunciar", { activityId: activity.id })}>{Icon.flag} Problema com uma pessoa? Denunciar</button>
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <div className="safety-links flex flex-wrap gap-y-2.5 gap-x-6 [&_svg]:size-4 [&_svg]:shrink-0">
+            <button className="p-0 border-0 inline-flex items-center gap-1.5 bg-transparent text-[13px] font-semibold text-rosa-texto underline [text-underline-offset:2px] cursor-pointer [&_svg]:size-4 [&_svg]:shrink-0 [.safety-links_&]:text-secundario [.safety-links_&]:no-underline" type="button" onClick={() => openModal("reportar", { activityId: activity.id })}>{Icon.alert} Reportar a atividade</button>
+            <button className="p-0 border-0 inline-flex items-center gap-1.5 bg-transparent text-[13px] font-semibold text-rosa-texto underline [text-underline-offset:2px] cursor-pointer [&_svg]:size-4 [&_svg]:shrink-0 [.safety-links_&]:text-secundario [.safety-links_&]:no-underline" type="button" onClick={() => openModal("denunciar", { activityId: activity.id })}>{Icon.flag} Problema com uma pessoa? Denunciar</button>
           </div>
           <button className="btn btn--gradient" type="submit">Enviar avaliação</button>
         </div>

@@ -22,15 +22,15 @@ export default function Favorites() {
         </EmptyState>
       ) : (
         <>
-          <div className="activities activities--app activities--fill">
+          <div className="activities--app grid gap-5 grid-cols-[repeat(auto-fill,minmax(260px,1fr))]">
             {upcoming.map((a) => (
               <ActivityCard key={a.id} activity={a} />
             ))}
           </div>
           {past.length > 0 && (
             <>
-              <h2 className="group-title">Já aconteceram</h2>
-              <div className="activities activities--app activities--fill is-faded">
+              <h2 className="mt-2 mb-1 mx-0 text-[13px] font-bold text-secundario">Já aconteceram</h2>
+              <div className="activities--app grid gap-5 grid-cols-[repeat(auto-fill,minmax(260px,1fr))] opacity-60">
                 {past.map((a) => (
                   <ActivityCard key={a.id} activity={a} />
                 ))}

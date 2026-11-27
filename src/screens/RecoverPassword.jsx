@@ -22,14 +22,14 @@ export default function RecoverPassword() {
   }
 
   return (
-    <div className="auth">
+    <div className="flex min-h-screen bg-pagina">
       <AuthVisual />
-      <main className="auth__main">
-        <form className="auth__form" onSubmit={submit} noValidate>
-          <a className="auth__link back-link" href={link("login")}>
+      <main className="py-12 px-10 grid flex-1 place-items-center max-lg:py-10 max-lg:px-5 max-lg:min-h-screen">
+        <form className="flex flex-col gap-5 w-full max-w-110" onSubmit={submit} noValidate>
+          <a className="text-rosa-texto font-semibold inline-flex items-center gap-1.5 [&_svg]:size-4 [&_svg]:shrink-0" href={link("login")}>
             {Icon.arrowLeft} Voltar para o login
           </a>
-          <div className="auth__intro">
+          <div className="flex flex-col gap-2 mb-2 [&_h1]:text-[34px] [&_h1]:leading-[1.1] [&_h1]:tracking-[-0.68px] [&_h1]:font-bold [&_p]:text-[16px] [&_p]:text-secundario">
             <h1>Esqueceu a senha?</h1>
             <p>Sem problema. Digite seu e-mail e enviamos um link para criar uma nova.</p>
           </div>
@@ -44,8 +44,8 @@ export default function RecoverPassword() {
           ) : (
             <label className="field">
               <span>E-mail</span>
-              <span className={error ? "field__box field__box--error" : "field__box"}>
-                <span className="field__icon">{Icon.mail}</span>
+              <span className={error ? "field-box field-box--error" : "field-box"}>
+                <span className="field-icon">{Icon.mail}</span>
                 <input type="email" placeholder="seuemail@exemplo.com" value={email} aria-invalid={Boolean(error)} onChange={(e) => setEmail(e.target.value)} />
               </span>
               {error && <small className="form-error" role="alert">{error}</small>}
