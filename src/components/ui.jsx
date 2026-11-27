@@ -30,20 +30,6 @@ export function WeatherIcon({ activity }) {
   return Icon[activity.weather.icon] ?? Icon.sun;
 }
 
-export function Avatar({ user, size = 40, className = "" }) {
-  return (
-    <img
-      className={`avatar ${className}`}
-      src={user.avatar}
-      alt={user.name}
-      width={size}
-      height={size}
-      style={{ width: size, height: size }}
-      loading="lazy"
-    />
-  );
-}
-
 export function AvatarStack({ ids, max = 3, small = true }) {
   const { user } = useStore();
   return (

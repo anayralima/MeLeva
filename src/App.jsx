@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { StoreProvider, useStore } from "./store.jsx";
 import ModalHost from "./components/Modals.jsx";
 import Landing from "./screens/Landing.jsx";
@@ -22,9 +22,6 @@ import Connections from "./screens/Connections.jsx";
 import RecoverPassword from "./screens/RecoverPassword.jsx";
 import Interests from "./screens/Interests.jsx";
 import InitialProfile from "./screens/InitialProfile.jsx";
-
-/* Ferramenta de armazenamento: só existe no modo de desenvolvimento. */
-const StorageTool = import.meta.env.DEV ? lazy(() => import("./screens/StorageTool.jsx")) : null;
 
 /** Lê o hash: "#/atividade/corrida-parque?x=1" → { name, param, query } */
 export function parseRoute(hash = window.location.hash) {
@@ -76,13 +73,6 @@ function Router() {
     document.title = titles[name] ?? "Me Leva";
   }, [name]);
 
-  if (name === "storage" && StorageTool) {
-    return (
-      <Suspense fallback={null}>
-        <StorageTool onNavigate={(next, event) => { event?.preventDefault(); window.location.hash = `#/${next}`; }} />
-      </Suspense>
-    );
-  }
   if (name === "login") return <Login />;
   if (name === "cadastro" || name === "signup") return <Signup />;
   if (name === "recuperar-senha") return <RecoverPassword />;

@@ -109,18 +109,6 @@ export const Icon = {
       <path d="M12 3s6 4.5 6 10a6 6 0 0 1-12 0c0-2.5 1.5-4.5 3-6 .2 1.4 1 2 2 2.4C11.6 7.4 12 5 12 3Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
     </svg>
   ),
-  bike: (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <circle cx="6" cy="17" r="3.5" stroke="currentColor" strokeWidth="1.8" />
-      <circle cx="18" cy="17" r="3.5" stroke="currentColor" strokeWidth="1.8" />
-      <path d="M6 17 9 8h5l4 9M9 8h6" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
-    </svg>
-  ),
-  leaf: (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M5 19C5 9 12 4 20 4c0 8-5 15-15 15ZM5 19c0-4 3-7 8-9" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  ),
   check: (
     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
       <path d="m5 12.5 4.5 4.5L19 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
