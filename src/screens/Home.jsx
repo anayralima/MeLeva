@@ -7,12 +7,6 @@ import { dayDiff, friendlyWhen, place } from "../utils/format.js";
 
 const SPORT_CHIPS = ["Corrida", "Trilha", "Ciclismo", "Futebol", "Yoga", "Vôlei", "Beach tênis", "Natação"];
 
-const challenges = [
-  { icon: Icon.flame, title: "5K no mês", progress: 62 },
-  { icon: Icon.bike, title: "Semana de bike", progress: 40 },
-  { icon: Icon.leaf, title: "7 dias de movimento", progress: 28 },
-];
-
 function greeting() {
   const h = new Date().getHours();
   if (h < 12) return "Bom dia";
@@ -192,29 +186,6 @@ export default function Home() {
                 <i className="dot dot--purple" />
                 Você
               </span>
-            </div>
-          </section>
-
-          <section className="panel">
-            <header className="panel__head">
-              <h2>Desafios da semana</h2>
-            </header>
-
-            <div className="challenges">
-              {challenges.map((challenge) => (
-                <div className="challenge" key={challenge.title}>
-                  <span className="challenge__icon">{challenge.icon}</span>
-                  <div className="challenge__body">
-                    <div className="challenge__row">
-                      <strong>{challenge.title}</strong>
-                      <span>{challenge.progress}%</span>
-                    </div>
-                    <div className="progress" role="progressbar" aria-valuenow={challenge.progress} aria-valuemin={0} aria-valuemax={100} aria-label={challenge.title}>
-                      <span style={{ width: `${challenge.progress}%` }} />
-                    </div>
-                  </div>
-                </div>
-              ))}
             </div>
           </section>
 

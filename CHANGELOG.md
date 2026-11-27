@@ -23,6 +23,8 @@ rastreabilidade versão ↔ commit — está em
 - "Sobre" do menu da Landing, botão "Continuar com Google" do Login, botão de e-mail do
   modal "Chame a galera", e opção de público e toggle de custo em Criar atividade (agora é
   só um aviso).
+- Quadro "Desafios da semana" do Início: as metas não tinham de onde vir (não há onde a
+  pessoa defini-las) e o progresso era fixo.
 
 ## [1.24.11.2026] - 2026-11-24
 
