@@ -37,6 +37,8 @@ rastreabilidade versão ↔ commit — está em
   atividades que a pessoa concluiu nos últimos 7 dias, somando o percurso informado por quem
   criou cada atividade. O gráfico acende os dias com atividade. Antes os valores eram fixos.
 - Teste da lista de espera usa a data atual, para não falhar depois da data do seed.
+- Testes de confirmar presença e cancelar também usam a data atual: a "Corrida no Parque"
+  do seed fixo já tinha passado e o teste falhava.
 - **Contato de confiança** (RF-034): o aviso vale de 1h antes até 1h depois da atividade; os
   textos de Detalhes, Participação confirmada e Editar perfil agora dizem o mesmo.
 - Detalhes: o aviso da lista de espera não se quebra mais em colunas e ficou em linguagem neutra
