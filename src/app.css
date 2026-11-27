@@ -385,49 +385,6 @@ legend {
   font-weight: 600;
 }
 
-.segmented {
-  display: inline-flex;
-  flex-wrap: wrap;
-  gap: 4px;
-  padding: 4px;
-  border-radius: 14px;
-  background: var(--apoio-lilas);
-}
-
-.segmented button {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 9px 16px;
-  border: 0;
-  border-radius: 10px;
-  background: transparent;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--texto-secundario);
-  cursor: pointer;
-}
-
-.segmented button svg {
-  width: 16px;
-  height: 16px;
-}
-
-.segmented button.is-active {
-  background: var(--fundo-superficie);
-  box-shadow: 0 2px 8px rgba(36, 16, 91, 0.1);
-  font-weight: 600;
-  color: var(--marca-rosa-texto);
-}
-
-.segmented--pill {
-  border-radius: var(--raio-pill);
-}
-
-.segmented--pill button {
-  border-radius: var(--raio-pill);
-}
-
 .chips--wrap {
   flex-wrap: wrap;
 }
@@ -615,8 +572,7 @@ legend {
 }
 
 /* ---------- Janelas (modais) ---------- */
-.modal,
-.drawer {
+.modal {
   position: fixed;
   inset: 0;
   z-index: 150;
@@ -1433,34 +1389,11 @@ legend {
   }
 }
 
-.drawer {
-  place-items: stretch end;
-  padding: 0;
-}
-
-.drawer__box {
-  display: flex;
-  flex-direction: column;
-  width: min(420px, 100%);
-  height: 100%;
-  background: var(--fundo-superficie);
-  animation: slide 0.2s ease;
-}
-
 @keyframes slide {
   from {
     transform: translateX(30px);
     opacity: 0;
   }
-}
-
-.drawer__body {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  gap: 22px;
-  padding: 8px 24px 24px;
-  overflow-y: auto;
 }
 
 /* ---------- Detalhes ---------- */
@@ -3790,16 +3723,6 @@ legend {
 
   .auth__mobile-logo {
     display: block;
-  }
-
-  .segmented {
-    display: flex;
-  }
-
-  .segmented button {
-    flex: 1;
-    justify-content: center;
-    padding: 9px 10px;
   }
 
   .chat {

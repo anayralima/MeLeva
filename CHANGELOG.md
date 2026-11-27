@@ -20,6 +20,12 @@ rastreabilidade versão ↔ commit — está em
 
 ### Changed
 
+- **Tailwind CSS (etapa 1):** o projeto passa a usar o Tailwind (plugin do Vite). O CSS antigo
+  fica numa camada de prioridade mais baixa enquanto a migração acontece. Primeiro componente
+  migrado: o seletor de opções (Data, Horário, Nível, Lista/Mapa…), agora `Segmented`, que
+  ocupa a largura toda e passa para 2 por linha quando falta espaço.
+- **Tailwind CSS (etapa 2):** painel de Filtros do Explorar migrado. A altura fica presa à tela:
+  o meio rola e o rodapé (Limpar / Ver resultados) não some mais em telas baixas.
 - **Sua semana** (Início): "feitas" e "km percorridos" agora são calculados a partir das
   atividades que a pessoa concluiu nos últimos 7 dias, somando o percurso informado por quem
   criou cada atividade. O gráfico acende os dias com atividade. Antes os valores eram fixos.

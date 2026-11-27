@@ -1,6 +1,6 @@
 import { useState } from "react";
 import AppShell from "../components/AppShell.jsx";
-import { EmptyState, go, link } from "../components/ui.jsx";
+import { EmptyState, go, link, Segmented } from "../components/ui.jsx";
 import { Icon } from "../icons.jsx";
 import { useStore } from "../store.jsx";
 import { canRate, findActivity, rateActivity } from "../services/rules.js";
@@ -81,13 +81,16 @@ export default function RateActivity({ param }) {
 
         <fieldset>
           <legend className="label">Foi como o descrito?</legend>
-          <div className="segmented">
-            {[["yes", "Sim"], ["partly", "Mais ou menos"], ["no", "Não"]].map(([id, label]) => (
-              <button key={id} type="button" aria-pressed={asDescribed === id} className={asDescribed === id ? "is-active" : ""} onClick={() => setAsDescribed(id)}>
-                {label}
-              </button>
-            ))}
-          </div>
+          <Segmented
+            label="Foi como o descrito?"
+            options={[
+              { id: "yes", label: "Sim" },
+              { id: "partly", label: "Mais ou menos" },
+              { id: "no", label: "Não" },
+            ]}
+            value={asDescribed}
+            onChange={setAsDescribed}
+          />
         </fieldset>
 
         <label className="field">

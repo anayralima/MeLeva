@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import AppShell from "../components/AppShell.jsx";
-import { ActivityRow, EmptyState, LevelTag, link, MapView, Skeleton, SpotsText, Toggle } from "../components/ui.jsx";
+import { ActivityRow, EmptyState, LevelTag, link, MapView, Segmented, Skeleton, SpotsText, Toggle } from "../components/ui.jsx";
 import { Icon } from "../icons.jsx";
 import { useStore } from "../store.jsx";
 import { countFilters, DEFAULT_FILTERS, filterActivities, findActivity, LEVELS, SPORTS, visibleActivities } from "../services/rules.js";
@@ -34,9 +34,14 @@ function FilterPanel({ filters, onApply, onClose }) {
   const toggle = (key, value) => set(key, draft[key].includes(value) ? draft[key].filter((v) => v !== value) : [...draft[key], value]);
 
   return (
-    <div className="drawer" role="dialog" aria-modal="true" aria-label="Filtros" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
+    <div
+      className="fixed inset-0 z-[150] grid grid-rows-[minmax(0,1fr)] justify-items-end bg-[rgba(24,10,60,0.45)] animate-[fade_0.15s_ease]"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Filtros"
+      onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
       <form
-        className="drawer__box"
+        className="flex h-full min-h-0 w-full max-w-[420px] flex-col bg-superficie animate-[slide_0.2s_ease]"
         onSubmit={(e) => {
           e.preventDefault();
           onApply(draft);
@@ -49,7 +54,7 @@ function FilterPanel({ filters, onApply, onClose }) {
           </button>
         </header>
 
-        <div className="drawer__body">
+        <div className="flex min-h-0 flex-1 flex-col gap-[22px] overflow-y-auto px-6 pt-2 pb-6">
           <fieldset>
             <legend className="label">Esporte</legend>
             <div className="chips chips--wrap">
@@ -63,29 +68,22 @@ function FilterPanel({ filters, onApply, onClose }) {
 
           <fieldset>
             <legend className="label">Data</legend>
-            <div className="segmented">
-              {QUICK_WHEN.map((w) => (
-                <button key={w.id} type="button" aria-pressed={draft.when === w.id} className={draft.when === w.id ? "is-active" : ""} onClick={() => set("when", w.id)}>
-                  {w.label}
-                </button>
-              ))}
-            </div>
+            <Segmented label="Data" options={QUICK_WHEN} value={draft.when} onChange={(id) => set("when", id)} />
           </fieldset>
 
           <fieldset>
             <legend className="label">Horário</legend>
-            <div className="segmented">
-              {[
-                ["all", "Qualquer"],
-                ["morning", "Manhã"],
-                ["afternoon", "Tarde"],
-                ["night", "Noite"],
-              ].map(([id, label]) => (
-                <button key={id} type="button" aria-pressed={draft.period === id} className={draft.period === id ? "is-active" : ""} onClick={() => set("period", id)}>
-                  {label}
-                </button>
-              ))}
-            </div>
+            <Segmented
+              label="Horário"
+              options={[
+                { id: "all", label: "Qualquer" },
+                { id: "morning", label: "Manhã" },
+                { id: "afternoon", label: "Tarde" },
+                { id: "night", label: "Noite" },
+              ]}
+              value={draft.period}
+              onChange={(id) => set("period", id)}
+            />
           </fieldset>
 
           <fieldset>
@@ -174,14 +172,17 @@ export default function Explore({ query }) {
             {filters.query && ` para “${filters.query}”`}
           </p>
         </div>
-        <div className="segmented segmented--pill" role="tablist" aria-label="Modo de visualização">
-          <button role="tab" aria-selected={view === "list"} className={view === "list" ? "is-active" : ""} type="button" onClick={() => setView("list")}>
-            {Icon.list} Lista
-          </button>
-          <button role="tab" aria-selected={view === "map"} className={view === "map" ? "is-active" : ""} type="button" onClick={() => setView("map")}>
-            {Icon.map} Mapa
-          </button>
-        </div>
+        <Segmented
+          pill
+          tabs
+          label="Modo de visualização"
+          options={[
+            { id: "list", label: "Lista", icon: Icon.list },
+            { id: "map", label: "Mapa", icon: Icon.map },
+          ]}
+          value={view}
+          onChange={setView}
+        />
       </div>
 
       <div className="chips chips--scroll" role="group" aria-label="Filtros rápidos">

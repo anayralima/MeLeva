@@ -1,6 +1,6 @@
 import { useState } from "react";
 import AppShell from "../components/AppShell.jsx";
-import { ActivityCard, go, PageHead } from "../components/ui.jsx";
+import { ActivityCard, go, PageHead, Segmented } from "../components/ui.jsx";
 import { Icon } from "../icons.jsx";
 import { useStore } from "../store.jsx";
 import { findActivity, LEVELS, saveActivity, validateActivity } from "../services/rules.js";
@@ -220,13 +220,12 @@ export default function CreateActivity({ param }) {
             <div className="form-grid form-grid--level">
               <fieldset>
                 <legend className="label">Nível</legend>
-                <div className="segmented">
-                  {LEVELS.map((level) => (
-                    <button key={level} type="button" aria-pressed={form.level === level} className={form.level === level ? "is-active" : ""} onClick={() => set("level", level)}>
-                      {level === "Todos os níveis" ? "Todos" : level}
-                    </button>
-                  ))}
-                </div>
+                <Segmented
+                  label="Nível"
+                  options={LEVELS.map((level) => ({ id: level, label: level === "Todos os níveis" ? "Todos" : level }))}
+                  value={form.level}
+                  onChange={(level) => set("level", level)}
+                />
               </fieldset>
               <div className="field">
                 <span>Vagas</span>

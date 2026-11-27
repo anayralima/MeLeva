@@ -1,5 +1,6 @@
 /** @file Campos de perfil compartilhados por Perfil inicial (05) e Editar perfil (14). */
 import { Icon } from "../icons.jsx";
+import { Segmented } from "./ui.jsx";
 import { SPORTS } from "../services/rules.js";
 
 export const AVATARS = [8, 5, 3, 2, 6, 10, 1, 4, 7, 9].map((n) => `/assets/landing/avatar-${n}.webp`);
@@ -56,13 +57,12 @@ export default function ProfileForm({ form, setForm, errors = {}, withSports = f
 
       <fieldset>
         <legend className="label">Nível</legend>
-        <div className="segmented">
-          {PROFILE_LEVELS.map((level) => (
-            <button key={level} type="button" aria-pressed={form.level === level} className={form.level === level ? "is-active" : ""} onClick={() => set("level", level)}>
-              {level}
-            </button>
-          ))}
-        </div>
+        <Segmented
+          label="Nível"
+          options={PROFILE_LEVELS.map((level) => ({ id: level, label: level }))}
+          value={form.level}
+          onChange={(level) => set("level", level)}
+        />
         {errors.level && <small className="form-error">{errors.level}</small>}
       </fieldset>
 

@@ -1,0 +1,29 @@
+/*
+ * Entrada de estilos do Me Leva.
+ *
+ * O site está migrando para o Tailwind CSS aos poucos. Enquanto a migração acontece,
+ * o CSS antigo (styles.css e app.css) fica na camada "legado", que tem a prioridade mais
+ * baixa: assim, quando um componente usa classes do Tailwind, elas sempre vencem.
+ * O "preflight" (reset) do Tailwind fica de fora para não mudar as telas que ainda
+ * usam o CSS antigo.
+ */
+@layer legado, theme, base, components, utilities;
+
+@import "./styles.css" layer(legado);
+@import "./app.css" layer(legado);
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+/* Cores e fonte da identidade visual, reaproveitando as variáveis que já existem. */
+@theme inline {
+  --color-principal: var(--texto-principal);
+  --color-secundario: var(--texto-secundario);
+  --color-rosa: var(--marca-rosa);
+  --color-rosa-texto: var(--marca-rosa-texto);
+  --color-roxo: var(--marca-roxo);
+  --color-lilas: var(--apoio-lilas);
+  --color-superficie: var(--fundo-superficie);
+  --color-pagina: var(--fundo-pagina);
+  --color-borda: var(--borda-suave);
+  --font-sans: var(--font);
+}
