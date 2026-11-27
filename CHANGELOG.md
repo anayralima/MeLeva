@@ -26,10 +26,19 @@ rastreabilidade versão ↔ commit — está em
   ocupa a largura toda e passa para 2 por linha quando falta espaço.
 - **Tailwind CSS (etapa 2):** painel de Filtros do Explorar migrado. A altura fica presa à tela:
   o meio rola e o rodapé (Limpar / Ver resultados) não some mais em telas baixas.
+- **Tailwind CSS (etapa 3, migração completa):** todas as telas e modais usam classes do
+  Tailwind direto no JSX. `src/styles.css` e `src/app.css` (6.138 linhas) foram removidos; o
+  que é de todas as telas (cores e fonte do Figma, reset, botões, chips, tags, campos, alertas,
+  abas, avisos e modais) fica em `src/index.css` (cerca de 270 linhas). O visual não mudou:
+  os estilos calculados pelo navegador foram comparados, elemento por elemento, em 27 telas e
+  7 modais, nas larguras 1440, 1024, 760 e 360 px. Pontos de quebra do protótipo viraram
+  variantes do Tailwind (`max-2xl`, `max-xl`, `max-lg`, `max-md`, `max-sm`, `max-xs`).
 - **Sua semana** (Início): "feitas" e "km percorridos" agora são calculados a partir das
   atividades que a pessoa concluiu nos últimos 7 dias, somando o percurso informado por quem
   criou cada atividade. O gráfico acende os dias com atividade. Antes os valores eram fixos.
 - Teste da lista de espera usa a data atual, para não falhar depois da data do seed.
+- Testes de confirmar presença e cancelar também usam a data atual: a "Corrida no Parque"
+  do seed fixo já tinha passado e o teste falhava.
 - **Contato de confiança** (RF-034): o aviso vale de 1h antes até 1h depois da atividade; os
   textos de Detalhes, Participação confirmada e Editar perfil agora dizem o mesmo.
 - Detalhes: o aviso da lista de espera não se quebra mais em colunas e ficou em linguagem neutra
@@ -40,6 +49,10 @@ rastreabilidade versão ↔ commit — está em
 - Testes de conexões e do "Sua semana" agora citam os requisitos RF10 e RF11.
 
 ### Removed
+
+- Tela `#/storage` (ferramenta de desenvolvimento herdada do repositório original) e o CSS dela.
+- Estilos que nenhuma tela usava (`.divider`, `.signup__strength`, `.progress`, `.map`, `.avatar`),
+  o componente `Avatar` e os ícones `bike` e `leaf`, que também não eram usados.
 
 - Filtro e etiqueta "só para mulheres" (Explorar, cards e Detalhes) e a marcação na atividade
   de vôlei: decisão do grupo para não haver discriminação, inclusive com mulheres trans.

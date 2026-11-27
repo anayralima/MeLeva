@@ -17,24 +17,24 @@ const isFiller = (id) => /^a\d+$/.test(id);
 
 function PersonCard({ person, common, children }) {
   return (
-    <li className="conn-card">
-      <a className="conn-card__photo" href={link(`pessoa/${person.id}`)}>
+    <li className="py-4 px-4.5 border border-borda flex items-center gap-4 rounded-[20px] bg-superficie shadow-[0_6px_20px_rgba(36,15,92,0.05)] max-md:flex-wrap">
+      <a className="[&_img]:block [&_img]:size-14 [&_img]:rounded-full [&_img]:object-cover" href={link(`pessoa/${person.id}`)}>
         <img src={person.avatar} alt="" />
       </a>
-      <div className="conn-card__info">
+      <div className="flex flex-1 flex-col gap-1 min-w-0 [&_a]:text-principal [&_a]:no-underline [&_a:hover_strong]:text-rosa-texto">
         <a href={link(`pessoa/${person.id}`)}>
           <strong>{person.name}</strong>
         </a>
-        <span className="conn-card__meta">
+        <span className="text-secundario text-[13px]">
           {person.city}
           {person.age ? ` • ${person.age} anos` : ""}
         </span>
-        <span className="conn-card__tags">
+        <span className="flex flex-wrap gap-1.5 mt-0.5">
           <LevelTag level={person.level} />
           {common.length > 0 && <span className="tag tag--lilac">{common.slice(0, 2).join(" • ")}</span>}
         </span>
       </div>
-      <div className="conn-card__actions">{children}</div>
+      <div className="flex items-center gap-2 shrink-0 max-md:w-full [&_svg]:size-4 max-md:[&>*]:flex-1 max-md:[&>*]:justify-center">{children}</div>
     </li>
   );
 }
@@ -100,18 +100,18 @@ export default function Connections({ query = {} }) {
         </a>
       </PageHead>
 
-      <div className="conn">
-        <div className="conn__main">
-          <div className="conn__toolbar">
-            <div className="tabs conn__tabs" role="tablist">
+      <div className="grid grid-cols-[minmax(0,1fr)_340px] gap-6 items-start max-xl:grid-cols-[1fr]">
+        <div className="flex flex-col gap-4 min-w-0">
+          <div className="flex items-end justify-between gap-4 border-b border-b-borda max-md:flex-col max-md:items-stretch">
+            <div className="flex gap-6 overflow-x-auto mb-0 border-b-0 border-b-current" role="tablist">
               {tabs.map((t) => (
                 <button key={t.id} role="tab" aria-selected={tab === t.id} className={tab === t.id ? "tab is-active" : "tab"} type="button" onClick={() => setTab(t.id)}>
-                  {t.label} <span className="tab__count">{t.count}</span>
+                  {t.label} <span className="tab-count">{t.count}</span>
                 </button>
               ))}
             </div>
-            <label className="field__box conn__search">
-              <span className="field__icon">{Icon.search}</span>
+            <label className="field-box flex items-center gap-2 w-60 mb-2 max-md:w-full [&_input]:border-0 [&_input]:flex-1 [&_input]:min-w-0 [&_input]:[outline:0] [&_input]:bg-transparent [&_input]:text-principal [&_input]:[font-family:inherit] [&_input]:font-[inherit] [&_input]:[font-style:inherit] [&_input]:[line-height:inherit] [&_input]:text-[14px]">
+              <span className="field-icon">{Icon.search}</span>
               <input type="search" placeholder="Buscar pelo nome" aria-label="Buscar conexões pelo nome" value={search} onChange={(e) => setSearch(e.target.value)} />
             </label>
           </div>
@@ -125,7 +125,7 @@ export default function Connections({ query = {} }) {
               </EmptyState>
             </div>
           ) : (
-            <ul className="conn-list" role="tabpanel">
+            <ul className="p-0 m-0 list-none flex flex-col gap-3" role="tabpanel">
               {list.map((person) => (
                 <PersonCard key={person.id} person={person} common={common(person)}>
                   {tab === "connected" && (
@@ -162,19 +162,19 @@ export default function Connections({ query = {} }) {
           )}
         </div>
 
-        <aside className="conn__side">
+        <aside className="conn-side flex flex-col gap-4 min-w-0">
           <section className="card">
-            <h2 className="h3">Pessoas com interesses parecidos</h2>
+            <h2 className="text-[16px] font-bold">Pessoas com interesses parecidos</h2>
             {suggestions.length === 0 ? (
               <p className="hint">Você já se conectou com todo mundo por aqui!</p>
             ) : (
-              <ul className="people-list">
+              <ul className="flex flex-col gap-3.5 [.conn-side_&]:p-0 [.conn-side_&]:m-0 [.conn-side_&]:list-none">
                 {suggestions.map(({ person, common: shared }) => (
-                  <li className="person" key={person.id}>
+                  <li className="person flex items-center gap-3 [&>img]:shrink-0 [&>img]:size-10 [&>img]:rounded-full [&>img]:object-cover [&>a:first-child_img]:shrink-0 [&>a:first-child_img]:size-10 [&>a:first-child_img]:rounded-full [&>a:first-child_img]:object-cover [.conn-side_&]:[&>a:first-child_img]:size-11 [.conn-side_&]:[&>a:first-child_img]:rounded-full [.conn-side_&]:[&>a:first-child_img]:object-cover" key={person.id}>
                     <a href={link(`pessoa/${person.id}`)}>
                       <img src={person.avatar} alt="" />
                     </a>
-                    <div className="person__info">
+                    <div className="flex flex-1 flex-col min-w-0 text-[12px] text-secundario [&_strong]:text-[13px] [&_strong]:font-semibold [&_strong]:text-principal [&_a]:text-principal">
                       <a href={link(`pessoa/${person.id}`)}>
                         <strong>{person.name}</strong>
                       </a>
@@ -188,7 +188,7 @@ export default function Connections({ query = {} }) {
               </ul>
             )}
           </section>
-          <p className="note-lilac">{Icon.lock} Sua lista de conexões não aparece para outras pessoas.</p>
+          <p className="flex items-center gap-1.5 -mt-2 text-[12px] font-medium text-roxo [&_svg]:size-4 [&_svg]:shrink-0">{Icon.lock} Sua lista de conexões não aparece para outras pessoas.</p>
         </aside>
       </div>
     </AppShell>

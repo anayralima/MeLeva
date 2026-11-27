@@ -79,10 +79,10 @@ export function StoreProvider({ children }) {
   return (
     <StoreContext.Provider value={value}>
       {children}
-      <div className="toasts" role="status" aria-live="polite">
+      <div className="fixed bottom-6 left-1/2 z-200 flex flex-col items-center gap-2 [transform:translateX(-50%)] pointer-events-none max-xl:bottom-24" role="status" aria-live="polite">
         {toasts.map((t) => (
           <div className={`toast toast--${t.tone}`} key={t.id}>
-            <span className="toast__dot" aria-hidden="true" />
+            <span className="toast-dot" aria-hidden="true" />
             {t.text}
           </div>
         ))}

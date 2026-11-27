@@ -65,21 +65,6 @@ grava a chave `meleva:usuario`.
 Isso permite que `keys()` e `clear()` trabalhem apenas com os dados do Me Leva, sem
 apagar outras chaves do mesmo domínio.
 
-## Ferramenta visual
-
-Só existe em modo de desenvolvimento (não entra no build publicado). Com o projeto rodando (`npm run dev`), abra:
-
-```text
-http://localhost:5173/#/storage
-```
-
-A tela permite:
-
-- alternar entre `sessionStorage` e `localStorage`;
-- salvar uma chave com valor em JSON ou texto;
-- ler, remover e limpar valores;
-- ver a lista de chaves salvas e carregar cada uma no formulário.
-
 ## Limitações
 
 - O limite típico é de **cerca de 5 MB** por área, dependendo do navegador.
@@ -95,5 +80,3 @@ A tela permite:
 
 - [`src/services/storage.js`](../src/services/storage.js) — JSDoc de todas as funções,
   tipos e exemplos.
-- [`src/screens/StorageTool.jsx`](../src/screens/StorageTool.jsx) — JSDoc da tela e dos
-  manipuladores de evento.

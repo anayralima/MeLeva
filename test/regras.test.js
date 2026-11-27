@@ -33,10 +33,12 @@ import {
 } from "../src/services/rules.js";
 
 const fresh = () => createSeed(new Date("2026-11-24T10:00:00").getTime());
+// `join` confere o relógio real: estes testes usam a data de hoje para a atividade ser futura.
+const today = () => createSeed(Date.now());
 
 describe("Confirmar presença (RF18, RN02, RN03, RN05)", () => {
   it("confirma direto, sem aprovação do organizador, e libera endereço e chat", () => {
-    const { state, result } = join(fresh(), "corrida-parque");
+    const { state, result } = join(today(), "corrida-parque");
     const activity = findActivity(state, "corrida-parque");
     expect(result).toBe("confirmed");
     expect(statusOf(activity)).toBe("confirmed");
@@ -80,7 +82,7 @@ describe("Lista de espera (RF19, RF20, RN06, RN07, RN08)", () => {
   });
 
   it("quem cancela perde endereço e chat", () => {
-    let state = join(fresh(), "corrida-parque").state;
+    let state = join(today(), "corrida-parque").state;
     state = leave(state, "corrida-parque").state;
     const activity = findActivity(state, "corrida-parque");
     expect(canSeeAddress(activity)).toBe(false);

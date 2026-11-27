@@ -122,7 +122,7 @@ export default function CreateActivity({ param }) {
   }
 
   const err = (key) => (errors[key] ? <small className="form-error">{errors[key]}</small> : null);
-  const box = (key) => (errors[key] ? "field__box field__box--error" : "field__box");
+  const box = (key) => (errors[key] ? "field-box field-box--error" : "field-box");
 
   return (
     <AppShell active={editing ? "minhas" : "criar"}>
@@ -138,12 +138,12 @@ export default function CreateActivity({ param }) {
           </button>
         </PageHead>
 
-        <div className="create">
-          <div className="card create__form">
-            <h2 className="step-title"><span>1</span> O básico</h2>
+        <div className="grid grid-cols-[minmax(0,1fr)_320px] gap-6 items-start max-2xl:grid-cols-[minmax(0,1fr)_300px] max-xl:grid-cols-[1fr]">
+          <div className="card gap-4.5">
+            <h2 className="flex items-center gap-2.5 mt-2 [&_span]:grid [&_span]:place-items-center [&_span]:size-6.5 [&_span]:rounded-full [&_span]:[background:var(--gradiente-marca)] [&_span]:text-[13px] [&_span]:text-white"><span>1</span> O básico</h2>
             <fieldset>
               <legend className="label">Esporte</legend>
-              <div className="chips chips--wrap">
+              <div className="flex gap-2 flex-wrap">
                 {SPORT_OPTIONS.map((sport) => (
                   <button key={sport} type="button" aria-pressed={form.sport === sport} className={form.sport === sport ? "chip chip--active" : "chip"} onClick={() => set("sport", sport)}>
                     {sport}
@@ -159,8 +159,8 @@ export default function CreateActivity({ param }) {
               {err("title")}
             </label>
 
-            <h2 className="step-title"><span>2</span> Quando e onde</h2>
-            <div className="form-grid form-grid--3">
+            <h2 className="flex items-center gap-2.5 mt-2 [&_span]:grid [&_span]:place-items-center [&_span]:size-6.5 [&_span]:rounded-full [&_span]:[background:var(--gradiente-marca)] [&_span]:text-[13px] [&_span]:text-white"><span>2</span> Quando e onde</h2>
+            <div className="grid gap-4 grid-cols-[1.3fr_1fr_1fr] max-md:grid-cols-[1fr]">
               <label className="field">
                 <span>Data</span>
                 <span className={box("date")}>
@@ -177,7 +177,7 @@ export default function CreateActivity({ param }) {
               </label>
               <label className="field">
                 <span>Duração</span>
-                <span className="field__box">
+                <span className="field-box">
                   <select value={form.durationMin} onChange={(e) => set("durationMin", Number(e.target.value))}>
                     {[30, 45, 60, 90, 120, 180, 240, 360].map((m) => (
                       <option key={m} value={m}>
@@ -188,10 +188,10 @@ export default function CreateActivity({ param }) {
                 </span>
               </label>
             </div>
-            <div className="form-grid">
+            <div className="grid grid-cols-[1fr_1fr] gap-4 max-md:grid-cols-[1fr]">
               <label className="field">
                 <span>Bairro (aparece no card)</span>
-                <span className="field__box">
+                <span className="field-box">
                   <select value={form.region} onChange={(e) => set("region", e.target.value)}>
                     {REGIONS.map((r) => (
                       <option key={r}>{r}</option>
@@ -201,7 +201,7 @@ export default function CreateActivity({ param }) {
               </label>
               <label className="field">
                 <span>Distância ou percurso (opcional)</span>
-                <span className="field__box">
+                <span className="field-box">
                   <input value={form.distanceText} placeholder="Ex.: 5 km" onChange={(e) => set("distanceText", e.target.value)} />
                 </span>
               </label>
@@ -209,15 +209,15 @@ export default function CreateActivity({ param }) {
             <label className="field">
               <span>Ponto de encontro</span>
               <span className={box("address")}>
-                <span className="field__icon">{Icon.mapPin}</span>
+                <span className="field-icon">{Icon.mapPin}</span>
                 <input value={form.address} placeholder="Ex.: Portão principal do Parque Municipal" aria-invalid={Boolean(errors.address)} onChange={(e) => set("address", e.target.value)} />
               </span>
               {err("address")}
             </label>
-            <p className="note-lilac">{Icon.lock} Só quem confirmar presença vê o endereço exato. No card aparece apenas a região ({form.region}).</p>
+            <p className="flex items-center gap-1.5 -mt-2 text-[12px] font-medium text-roxo [&_svg]:size-4 [&_svg]:shrink-0">{Icon.lock} Só quem confirmar presença vê o endereço exato. No card aparece apenas a região ({form.region}).</p>
 
-            <h2 className="step-title"><span>3</span> Quem pode participar</h2>
-            <div className="form-grid form-grid--level">
+            <h2 className="flex items-center gap-2.5 mt-2 [&_span]:grid [&_span]:place-items-center [&_span]:size-6.5 [&_span]:rounded-full [&_span]:[background:var(--gradiente-marca)] [&_span]:text-[13px] [&_span]:text-white"><span>3</span> Quem pode participar</h2>
+            <div className="grid gap-4 grid-cols-[1fr_auto] items-start max-md:grid-cols-[1fr]">
               <fieldset>
                 <legend className="label">Nível</legend>
                 <Segmented
@@ -238,13 +238,13 @@ export default function CreateActivity({ param }) {
               </div>
             </div>
 
-            <div className="cost-box">
-              <span className="cost-box__icon">{Icon.info}</span>
+            <div className="p-3.5 border border-[#f3d995] flex items-center gap-3 rounded-[14px] bg-aviso-suave [&>span:nth-child(2)]:flex [&>span:nth-child(2)]:flex-1 [&>span:nth-child(2)]:flex-col [&>span:nth-child(2)]:gap-0.5 [&>span:nth-child(2)]:text-[14px] [&_small]:text-[12px] [&_small]:leading-[1.4] [&_small]:text-secundario">
+              <span className="size-5.5 text-aviso">{Icon.info}</span>
               <span>
                 <strong>Atividades entre pessoas são sempre grátis.</strong>
                 <small>
                   Se houver custo (ex.: aluguel de quadra) ou divulgação de marca, avise na descrição.{" "}
-                  <button type="button" className="text-btn" onClick={() => openModal("plano")}>Pagas e patrocinadas: plano Organizador (em breve)</button>
+                  <button type="button" className="p-0 border-0 inline-flex items-center gap-1.5 bg-transparent text-[13px] font-semibold text-rosa-texto underline [text-underline-offset:2px] cursor-pointer [&_svg]:size-4 [&_svg]:shrink-0 [.safety-links_&]:text-secundario [.safety-links_&]:no-underline" onClick={() => openModal("plano")}>Pagas e patrocinadas: plano Organizador (em breve)</button>
                 </small>
               </span>
             </div>
@@ -257,19 +257,19 @@ export default function CreateActivity({ param }) {
 
             <fieldset>
               <legend className="label">Foto de capa</legend>
-              <div className="covers">
+              <div className="flex flex-wrap gap-2.5">
                 {COVERS.map((src, index) => (
-                  <label key={src} className={form.image === src ? "cover is-active" : "cover"}>
+                  <label key={src} className={form.image === src ? "is-active border-[2.5px] border-rosa relative w-24 h-18 overflow-hidden rounded-[12px] cursor-pointer [&_input]:absolute [&_input]:opacity-0 [&_img]:size-full [&_img]:object-cover focus-within:shadow-[var(--foco)]" : "border-[2.5px] border-transparent relative w-24 h-18 overflow-hidden rounded-[12px] cursor-pointer [&_input]:absolute [&_input]:opacity-0 [&_img]:size-full [&_img]:object-cover focus-within:shadow-[var(--foco)]"}>
                     <input type="radio" name="cover" checked={form.image === src} onChange={() => set("image", src)} />
                     <img src={src} alt={`Capa ${index + 1}`} />
                   </label>
                 ))}
                 {!COVERS.includes(form.image) && (
-                  <span className="cover is-active">
+                  <span className="is-active border-[2.5px] border-rosa relative w-24 h-18 overflow-hidden rounded-[12px] cursor-pointer [&_input]:absolute [&_input]:opacity-0 [&_img]:size-full [&_img]:object-cover focus-within:shadow-[var(--foco)]">
                     <img src={form.image} alt="Sua foto" />
                   </span>
                 )}
-                <label className="cover cover--upload">
+                <label className="border-[1.5px] border-dashed border-rosa relative w-24 h-18 overflow-hidden rounded-[12px] cursor-pointer flex flex-col items-center justify-center gap-1 bg-[#fff7fb] text-[11px] font-semibold text-rosa-texto [&_input]:absolute [&_input]:opacity-0 [&_img]:size-full [&_img]:object-cover focus-within:shadow-[var(--foco)] [&_svg]:size-5">
                   <input type="file" accept="image/*" onChange={upload} />
                   {Icon.camera}
                   Enviar foto
@@ -278,10 +278,10 @@ export default function CreateActivity({ param }) {
             </fieldset>
           </div>
 
-          <aside className="create__side">
+          <aside className="create-side sticky top-4 flex flex-col gap-3.5 max-xl:static max-xl:-order-1">
             <p className="label">{Icon.eye} Prévia ao vivo do seu card</p>
             <ActivityCard activity={preview} preview />
-            <div className="tips">
+            <div className="p-4.5 flex flex-col gap-2.5 rounded-[18px] bg-lilas text-[14px] [&_svg]:size-4 [&_svg]:shrink-0 [&_strong]:flex [&_strong]:items-center [&_strong]:gap-2 [&_strong]:text-roxo [&_ul]:flex [&_ul]:flex-col [&_ul]:gap-2 [&_ul]:list-none [&_ul]:text-[13px] [&_li]:flex [&_li]:items-center [&_li]:gap-2">
               <strong>{Icon.trophy} Dicas pra lotar sua atividade</strong>
               <ul>
                 <li>{Icon.check} Use uma foto real do lugar</li>

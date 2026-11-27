@@ -12,9 +12,9 @@ const benefits = [
 
 export function Steps({ current }) {
   return (
-    <ol className="steps-bar" aria-label={`Passo ${current} de 3`}>
+    <ol className="steps-bar flex gap-2 list-none [&_li]:flex [&_li]:flex-1 [&_li]:flex-col [&_li]:gap-1.5 [&_li]:text-[12px] [&_li]:font-semibold [&_li]:text-secundario [&_li_span]:block [&_li_span]:h-1.25 [&_li_span]:overflow-hidden [&_li_span]:rounded-full [&_li_span]:bg-borda [&_li_span]:text-transparent [&_li_span]:text-[length:0]" aria-label={`Passo ${current} de 3`}>
       {["Conta", "Interesses", "Perfil"].map((label, index) => (
-        <li key={label} className={index + 1 <= current ? "is-done" : ""} aria-current={index + 1 === current ? "step" : undefined}>
+        <li key={label} className={index + 1 <= current ? "[.steps-bar_&]:text-rosa-texto [.steps-bar_&]:[&_span]:[background:var(--gradiente-marca)]" : ""} aria-current={index + 1 === current ? "step" : undefined}>
           <span>{index + 1}</span>
           {label}
         </li>
@@ -54,13 +54,13 @@ export default function Signup() {
     window.location.hash = "#/interesses";
   }
 
-  const fieldClass = (key) => (errors[key] ? "field__box field__box--error" : "field__box");
+  const fieldClass = (key) => (errors[key] ? "field-box field-box--error" : "field-box");
 
   return (
-    <div className="signup">
-      <form className="signup__form" onSubmit={submit} noValidate>
+    <div className="pt-6 pb-12 px-30 flex items-center gap-14 min-h-screen bg-pagina max-2xl:gap-10 max-2xl:pr-16 max-2xl:pl-16 max-xl:py-10 max-xl:px-6 max-xl:justify-center">
+      <form className="flex shrink-0 flex-col gap-4.5 w-full max-w-140 min-w-0" onSubmit={submit} noValidate>
         <Steps current={1} />
-        <div className="auth__intro signup__intro">
+        <div className="flex flex-col gap-2 mb-2 [&_h1]:leading-[1.1] [&_h1]:font-bold [&_h1]:text-[40px] [&_h1]:tracking-[-0.6px] [&_p]:text-[16px] [&_p]:text-secundario">
           <h1>Crie sua conta</h1>
           <p>Leva menos de 1 minuto. Depois você escolhe seus esportes.</p>
         </div>
@@ -68,7 +68,7 @@ export default function Signup() {
         <label className="field">
           <span>Nome completo</span>
           <span className={fieldClass("name")}>
-            <span className="field__icon">{Icon.user}</span>
+            <span className="field-icon">{Icon.user}</span>
             <input type="text" placeholder="Mariana Souza" autoComplete="name" value={form.name} onChange={set("name")} aria-invalid={Boolean(errors.name)} />
           </span>
           {errors.name && <small className="form-error">{errors.name}</small>}
@@ -77,13 +77,13 @@ export default function Signup() {
         <label className="field">
           <span>E-mail</span>
           <span className={fieldClass("email")}>
-            <span className="field__icon">{Icon.mail}</span>
+            <span className="field-icon">{Icon.mail}</span>
             <input type="email" placeholder="mariana@unifeso.com.vc" autoComplete="email" value={form.email} onChange={set("email")} aria-invalid={Boolean(errors.email)} />
           </span>
           {errors.email && <small className="form-error">{errors.email}</small>}
         </label>
 
-        <div className="signup__passwords">
+        <div className="signup-passwords flex gap-4">
           <label className="field">
             <span>Senha</span>
             <span className={fieldClass("password")}>
@@ -100,22 +100,22 @@ export default function Signup() {
           </label>
         </div>
 
-        <ul className="pw-checks" aria-label="Regras da senha">
-          <li className={checks.length ? "is-ok" : ""}>{Icon.check} 8+ caracteres</li>
-          <li className={checks.number ? "is-ok" : ""}>{Icon.check} um número</li>
-          <li className={checks.symbol ? "is-ok" : ""}>{Icon.check} um símbolo</li>
+        <ul className="pw-checks flex flex-wrap gap-y-1.5 gap-x-4 list-none text-[12px] font-medium text-secundario [&_svg]:size-4 [&_svg]:shrink-0 [&_li]:flex [&_li]:items-center [&_li]:gap-1 [&_li_svg]:p-0.5 [&_li_svg]:size-3.5 [&_li_svg]:rounded-full [&_li_svg]:bg-borda" aria-label="Regras da senha">
+          <li className={checks.length ? "[.pw-checks_&]:text-verde-texto [.pw-checks_&]:[&_svg]:bg-verde" : ""}>{Icon.check} 8+ caracteres</li>
+          <li className={checks.number ? "[.pw-checks_&]:text-verde-texto [.pw-checks_&]:[&_svg]:bg-verde" : ""}>{Icon.check} um número</li>
+          <li className={checks.symbol ? "[.pw-checks_&]:text-verde-texto [.pw-checks_&]:[&_svg]:bg-verde" : ""}>{Icon.check} um símbolo</li>
         </ul>
         {errors.password && <small className="form-error">{errors.password}</small>}
 
-        <label className="signup__terms">
+        <label className="flex items-center gap-2.5 text-[14px] text-secundario [&_a]:text-rosa-texto [&_input]:m-0 [&_input]:border-[1.5px] [&_input]:border-borda [&_input]:relative [&_input]:shrink-0 [&_input]:size-5 [&_input]:rounded-[6px] [&_input]:bg-superficie [&_input]:appearance-none [&_input]:cursor-pointer [&_input:checked]:border-transparent [&_input:checked]:[background:linear-gradient(135deg,#d4136f_0%,#7b2ad8_100%)] [&_input:checked::after]:border-white [&_input:checked::after]:absolute [&_input:checked::after]:top-0.75 [&_input:checked::after]:left-1.75 [&_input:checked::after]:w-1 [&_input:checked::after]:h-2.25 [&_input:checked::after]:border-t-0 [&_input:checked::after]:border-r-2 [&_input:checked::after]:border-b-2 [&_input:checked::after]:border-l-0 [&_input:checked::after]:[transform:rotate(45deg)]">
           <input type="checkbox" checked={form.terms} onChange={set("terms")} />
           <span>
             Li e concordo com os{" "}
-            <button type="button" className="text-btn" onClick={() => openModal("termos")}>
+            <button type="button" className="p-0 border-0 inline-flex items-center gap-1.5 bg-transparent text-[13px] font-semibold text-rosa-texto underline [text-underline-offset:2px] cursor-pointer [&_svg]:size-4 [&_svg]:shrink-0 [.safety-links_&]:text-secundario [.safety-links_&]:no-underline" onClick={() => openModal("termos")}>
               Termos de uso
             </button>{" "}
             e a{" "}
-            <button type="button" className="text-btn" onClick={() => openModal("termos")}>
+            <button type="button" className="p-0 border-0 inline-flex items-center gap-1.5 bg-transparent text-[13px] font-semibold text-rosa-texto underline [text-underline-offset:2px] cursor-pointer [&_svg]:size-4 [&_svg]:shrink-0 [.safety-links_&]:text-secundario [.safety-links_&]:no-underline" onClick={() => openModal("termos")}>
               Política de privacidade
             </button>
             .
@@ -128,24 +128,24 @@ export default function Signup() {
           {Icon.arrowRight}
         </button>
 
-        <p className="auth__foot">
+        <p className="text-center text-[14px] text-secundario">
           Já tem conta?{" "}
-          <a className="auth__link" href={link("login")}>
+          <a className="text-rosa-texto font-semibold" href={link("login")}>
             Entrar
           </a>
         </p>
       </form>
 
-      <aside className="signup__visual">
-        <img className="signup__photo" src="/assets/app/cadastro-hero.webp" alt="" />
-        <div className="signup__overlay" />
+      <aside className="relative flex-1 min-w-0 h-200 max-h-[calc(100vh_-_72px)] overflow-hidden rounded-[32px] bg-lilas max-xl:hidden">
+        <img className="absolute inset-0 size-full object-cover" src="/assets/app/cadastro-hero.webp" alt="" />
+        <div className="absolute inset-0 [background:linear-gradient(_180deg,rgba(49,16,78,0.05)_30%,rgba(49,16,78,0.9)_100%_)]" />
 
-        <div className="signup__benefits">
+        <div className="pt-0 pb-10 px-10 absolute right-0 bottom-0 left-0 flex flex-col gap-4.5 text-white [&_h2]:max-w-130 [&_h2]:text-[32px] [&_h2]:leading-[1.1] [&_h2]:tracking-[-0.48px] [&_h2]:font-bold [&_ul]:flex [&_ul]:flex-col [&_ul]:gap-4.5 [&_ul]:list-none">
           <h2>Seu próximo time está a um cadastro de distância.</h2>
           <ul>
             {benefits.map((benefit) => (
-              <li className="signup__benefit" key={benefit}>
-                <span className="signup__benefit-icon">{Icon.check}</span>
+              <li className="flex items-center gap-3 text-[16px] font-medium" key={benefit}>
+                <span className="flex shrink-0 items-center justify-center size-6.5 rounded-full bg-[rgba(255,255,255,0.2)] [&_svg]:size-3.75">{Icon.check}</span>
                 {benefit}
               </li>
             ))}

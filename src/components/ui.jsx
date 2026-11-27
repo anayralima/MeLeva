@@ -30,24 +30,10 @@ export function WeatherIcon({ activity }) {
   return Icon[activity.weather.icon] ?? Icon.sun;
 }
 
-export function Avatar({ user, size = 40, className = "" }) {
-  return (
-    <img
-      className={`avatar ${className}`}
-      src={user.avatar}
-      alt={user.name}
-      width={size}
-      height={size}
-      style={{ width: size, height: size }}
-      loading="lazy"
-    />
-  );
-}
-
 export function AvatarStack({ ids, max = 3, small = true }) {
   const { user } = useStore();
   return (
-    <div className={small ? "people__avatars people__avatars--sm" : "people__avatars"}>
+    <div className={small ? "flex [&_img]:border-2 [&_img]:border-white [&_img]:rounded-full [&_img]:object-cover [&_img]:size-6 [&_img+img]:-ml-2.5" : "flex [&_img]:border-2 [&_img]:border-pagina [&_img]:size-8.5 [&_img]:rounded-full [&_img]:object-cover [&_img+img]:-ml-2.5"}>
       {ids.slice(0, max).map((id) => {
         const person = user(id);
         return <img key={id} src={person.avatar} alt={person.name} />;
@@ -56,7 +42,7 @@ export function AvatarStack({ ids, max = 3, small = true }) {
   );
 }
 
-export function FavoriteButton({ activity, className = "activity__favorite" }) {
+export function FavoriteButton({ activity, className = "activity-favorite" }) {
   const { state, run, toast } = useStore();
   const active = state.favorites.includes(activity.id);
   return (
@@ -100,17 +86,17 @@ export function StatusTag({ activity }) {
 export function ActivityCard({ activity, preview = false }) {
   const Wrapper = preview ? "div" : "a";
   return (
-    <article className="activity">
-      <Wrapper className="activity__link" {...(preview ? {} : { href: link(`atividade/${activity.id}`) })}>
-        <div className="activity__cover">
+    <article className="activity border border-borda flex flex-col rounded-[20px] bg-superficie overflow-hidden relative [transition:box-shadow_0.15s,transform_0.15s] hover:shadow-[var(--sombra-card)] hover:[transform:translateY(-2px)] max-xl:[.create-side_&]:max-w-90">
+      <Wrapper className="flex flex-1 flex-col" {...(preview ? {} : { href: link(`atividade/${activity.id}`) })}>
+        <div className="relative h-42 [&>img]:size-full [&>img]:object-cover [.activities--app_&]:h-42">
           <img src={activity.image} alt={`Foto da atividade ${activity.title}`} loading="lazy" />
           {activity.hot && <span className="tag tag--hot">{Icon.flame} Em alta</span>}
         </div>
 
-        <div className="activity__body">
-          <span className="activity__sport">{activity.sport}</span>
+        <div className="pt-4.5 pb-3.5 px-4.5 flex flex-col gap-2 [&_h3]:text-[17px] [&_h3]:font-bold">
+          <span className="text-[11px] font-semibold tracking-[0.88px] uppercase text-rosa">{activity.sport}</span>
           <h3>{activity.title}</h3>
-          <ul className="activity__meta">
+          <ul className="flex flex-col gap-1.5 list-none text-[13px] text-secundario [&_li]:flex [&_li]:items-center [&_li]:gap-1.5 [&_svg]:size-3.5 [&_svg]:shrink-0">
             <li>
               {Icon.calendar}
               {shortDate(activity.start)}
@@ -126,8 +112,8 @@ export function ActivityCard({ activity, preview = false }) {
           </ul>
         </div>
 
-        <div className="activity__footer">
-          <div className="activity__people">
+        <div className="pt-3 pb-4 px-4.5 flex items-center justify-between gap-3 mt-auto border-t border-t-borda">
+          <div className="flex items-center gap-2 text-[12px] text-secundario">
             <AvatarStack ids={activity.participants} />
             <SpotsText activity={activity} />
           </div>
@@ -145,22 +131,22 @@ export function ActivityRow({ activity, selected, onSelect }) {
   const status = statusOf(activity);
   return (
     <article
-      className={selected ? "row-card row-card--selected" : "row-card"}
+      className={selected ? "p-3 border border-[#e9c7de] flex gap-4 rounded-[18px] bg-superficie [transition:box-shadow_0.15s,border-color_0.15s] max-md:flex-wrap hover:shadow-[var(--sombra-card)] [&_h3]:text-[17px] [&_h3]:font-bold" : "p-3 border border-borda flex gap-4 rounded-[18px] bg-superficie [transition:box-shadow_0.15s,border-color_0.15s] max-md:flex-wrap hover:shadow-[var(--sombra-card)] [&_h3]:text-[17px] [&_h3]:font-bold"}
       onMouseEnter={() => onSelect?.(activity.id)}
     >
-      <a className="row-card__img" href={link(`atividade/${activity.id}`)} tabIndex={-1} aria-hidden="true">
+      <a className="shrink-0 w-37.5 max-md:w-24 [&_img]:w-full [&_img]:h-28 [&_img]:rounded-[12px] [&_img]:object-cover max-md:[&_img]:h-24" href={link(`atividade/${activity.id}`)} tabIndex={-1} aria-hidden="true">
         <img src={activity.image} alt="" loading="lazy" />
       </a>
-      <div className="row-card__body">
-        <div className="row-card__tags">
-          <span className="activity__sport">{activity.sport}</span>
+      <div className="py-1 px-0 flex flex-1 flex-col gap-1.5 min-w-0 max-md:basis-[calc(100%_-_112px)]">
+        <div className="row-card-tags flex flex-wrap items-center gap-2">
+          <span className="text-[11px] font-semibold tracking-[0.88px] uppercase text-rosa">{activity.sport}</span>
           {activity.hot && <span className="tag tag--hot tag--xs">{Icon.flame} Em alta</span>}
           <StatusTag activity={activity} />
         </div>
         <h3>
           <a href={link(`atividade/${activity.id}`)}>{activity.title}</a>
         </h3>
-        <ul className="row-card__meta">
+        <ul className="flex flex-wrap gap-y-1 gap-x-4 list-none text-[13px] text-secundario [&_svg]:shrink-0 [&_svg]:size-3.5 [&_li]:flex [&_li]:items-center [&_li]:gap-1.5">
           <li>
             {Icon.calendar}
             {friendlyWhen(activity.start)}
@@ -174,13 +160,13 @@ export function ActivityRow({ activity, selected, onSelect }) {
             {weatherText(activity)}
           </li>
         </ul>
-        <div className="row-card__foot">
+        <div className="flex flex-wrap items-center gap-2.5 mt-0.5">
           <AvatarStack ids={activity.participants} />
           <SpotsText activity={activity} />
           <LevelTag level={activity.level} />
         </div>
       </div>
-      <div className="row-card__side">
+      <div className="row-card-side flex flex-col items-end justify-between gap-3 max-md:flex-row max-md:items-center max-md:w-full">
         <FavoriteButton activity={activity} className="icon-btn" />
         <a className="btn btn--lilac btn--sm" href={link(`atividade/${activity.id}`)}>
           {status === "none" && full ? "Lista de espera" : "Ver detalhes"}
@@ -193,8 +179,8 @@ export function ActivityRow({ activity, selected, onSelect }) {
 /** Mapa ilustrativo de Teresópolis com pinos (RF12 / RN04). */
 export function MapView({ activities, selectedId, onSelect, compact = false }) {
   return (
-    <div className={compact ? "mapview mapview--compact" : "mapview"}>
-      <svg className="mapview__art" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+    <div className={compact ? "relative w-full overflow-hidden rounded-[16px] aspect-[16/9] [.meet-map--locked_&]:[filter:blur(2px)] max-xl:[.explore--map_&]:aspect-[4/3]" : "relative w-full aspect-[1/1.25] overflow-hidden rounded-[16px] [.meet-map--locked_&]:[filter:blur(2px)] max-xl:[.explore--map_&]:aspect-[4/3]"}>
+      <svg className="absolute inset-0 size-full" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
         <rect width="100" height="100" fill="#eaf3e7" />
         <rect x="6" y="10" width="22" height="26" rx="3" fill="#d7ead1" />
         <rect x="64" y="58" width="24" height="30" rx="3" fill="#d7ead1" />
@@ -204,7 +190,7 @@ export function MapView({ activities, selectedId, onSelect, compact = false }) {
         </g>
         <path d="M0 80c14-6 24 4 38 0s22-16 36-12 18 6 26 4" stroke="#cfe0f4" strokeWidth="3" fill="none" />
       </svg>
-      <span className="mapview__me" style={{ left: "52%", top: "52%" }} aria-label="Você está aqui" role="img" />
+      <span className="p-0 border-3 border-white absolute size-4.5 rounded-full [transform:translate(-50%,-50%)] bg-roxo shadow-[0_0_0_10px_rgba(106,43,192,0.18)] cursor-default" style={{ left: "52%", top: "52%" }} aria-label="Você está aqui" role="img" />
       {activities.map((activity) => {
         const pos = mapPosition(activity);
         return (
@@ -212,9 +198,9 @@ export function MapView({ activities, selectedId, onSelect, compact = false }) {
             key={activity.id}
             type="button"
             className={[
-              "mapview__pin",
-              pos.exact ? "mapview__pin--exact" : "",
-              selectedId === activity.id ? "mapview__pin--active" : "",
+              "mapview-pin",
+              pos.exact ? "mapview-pin--exact" : "",
+              selectedId === activity.id ? "mapview-pin--active" : "",
             ].join(" ")}
             style={{ left: `${pos.x}%`, top: `${pos.y}%` }}
             aria-label={`${activity.title}, ${place(activity)}${pos.exact ? "" : " (local aproximado)"}`}
@@ -244,7 +230,7 @@ export function Toggle({ checked, onChange, label }) {
 export function EmptyState({ icon = Icon.search, title, text, children }) {
   return (
     <div className="empty">
-      <span className="empty__icon">{icon}</span>
+      <span className="empty-icon">{icon}</span>
       <h3>{title}</h3>
       {text && <p>{text}</p>}
       {children}
@@ -254,11 +240,11 @@ export function EmptyState({ icon = Icon.search, title, text, children }) {
 
 export function Skeleton({ rows = 3 }) {
   return (
-    <div className="skeleton-list" aria-busy="true" aria-label="Carregando atividades">
+    <div className="flex flex-col gap-3.5" aria-busy="true" aria-label="Carregando atividades">
       {Array.from({ length: rows }).map((_, index) => (
-        <div className="skeleton" key={index}>
-          <span className="skeleton__img" />
-          <div className="skeleton__lines">
+        <div className="p-3 border border-borda flex gap-4 rounded-[18px] bg-superficie" key={index}>
+          <span className="rounded-[10px] [background:linear-gradient(90deg,#f1edf7_0%,#faf8fd_50%,#f1edf7_100%)] [background-size:200%_100%] [animation:shimmer_1.2s_infinite_linear] w-37.5 h-28 shrink-0 max-md:size-24" />
+          <div className="flex flex-1 flex-col justify-center gap-2.5 [&_span]:rounded-[10px] [&_span]:[background:linear-gradient(90deg,#f1edf7_0%,#faf8fd_50%,#f1edf7_100%)] [&_span]:[background-size:200%_100%] [&_span]:[animation:shimmer_1.2s_infinite_linear] [&_span]:h-3">
             <span style={{ width: "30%" }} />
             <span style={{ width: "60%" }} />
             <span style={{ width: "80%" }} />
@@ -291,15 +277,15 @@ export function Modal({ title, onClose, children, footer, wide = false }) {
 
   return (
     <div className="modal" onMouseDown={(event) => event.target === event.currentTarget && onClose()}>
-      <div className={wide ? "modal__box modal__box--wide" : "modal__box"} role="dialog" aria-modal="true" aria-label={title} ref={ref}>
-        <header className="modal__head">
+      <div className={wide ? "modal-box modal-box--wide" : "modal-box"} role="dialog" aria-modal="true" aria-label={title} ref={ref}>
+        <header className="modal-head">
           <h2>{title}</h2>
           <button className="icon-btn" type="button" aria-label="Fechar" onClick={onClose}>
             {Icon.close}
           </button>
         </header>
-        <div className="modal__body">{children}</div>
-        {footer && <footer className="modal__foot">{footer}</footer>}
+        <div className="modal-body">{children}</div>
+        {footer && <footer className="modal-foot">{footer}</footer>}
       </div>
     </div>
   );
@@ -307,12 +293,12 @@ export function Modal({ title, onClose, children, footer, wide = false }) {
 
 export function PageHead({ title, subtitle, children }) {
   return (
-    <header className="page-head">
+    <header className="flex items-end justify-between gap-4 mb-5 max-md:flex-col max-md:items-stretch [&_svg]:size-4 [&_svg]:shrink-0 [&_h1]:text-[30px] [&_h1]:font-extrabold [&_h1]:tracking-[-0.6px] max-md:[&_h1]:text-[24px] [&_p]:mt-1 [&_p]:text-[14px] [&_p]:text-secundario">
       <div>
         <h1>{title}</h1>
         {subtitle && <p>{subtitle}</p>}
       </div>
-      {children && <div className="page-head__actions">{children}</div>}
+      {children && <div className="page-head-actions flex flex-wrap gap-2.5">{children}</div>}
     </header>
   );
 }
