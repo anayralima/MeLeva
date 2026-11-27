@@ -113,13 +113,6 @@ function FilterPanel({ filters, onApply, onClose }) {
             </span>
             <Toggle checked={draft.openOnly} onChange={(v) => set("openOnly", v)} label="Só com vagas abertas" />
           </div>
-          <div className="switch-row">
-            <span>
-              <strong>Só para mulheres</strong>
-              <small>Participação autodeclarada</small>
-            </span>
-            <Toggle checked={draft.womenOnly} onChange={(v) => set("womenOnly", v)} label="Só para mulheres" />
-          </div>
           <div className="switch-row switch-row--disabled">
             <span>
               <strong>Só atividades gratuitas</strong>

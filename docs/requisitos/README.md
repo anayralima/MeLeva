@@ -116,7 +116,7 @@ Assim o requisito conversa com o [`CHANGELOG.md`](../../CHANGELOG.md) e com a co
 | [RF-010](funcionais/RF-010.md) | Enviar e aceitar pedidos de conexão | Implementado | Importante | 06. Início, 18. Notificações, 19. Perfil público |
 | [RF-011](funcionais/RF-011.md) | Início com próximas atividades, recomendadas e pessoas com interesses parecidos | Implementado | Essencial | 06. Início |
 | [RF-012](funcionais/RF-012.md) | Explorar atividades em lista e em mapa | Implementado | Essencial | 07, 07b. Explorar |
-| [RF-013](funcionais/RF-013.md) | Filtrar por esporte, data, horário, nível, distância, vagas abertas e "só para mulheres" | Implementado | Essencial | 08. Filtros |
+| [RF-013](funcionais/RF-013.md) | Filtrar por esporte, data, horário, nível, distância e vagas abertas | Implementado | Essencial | 08. Filtros |
 | [RF-014](funcionais/RF-014.md) | Favoritar atividades e ver a lista de favoritos | Implementado | Importante | 17. Favoritos |
 | [RF-015](funcionais/RF-015.md) | Mostrar a previsão do tempo no card e nos detalhes da atividade | Implementado (simulado) | Importante | 06, 07, 09 |
 | [RF-016](funcionais/RF-016.md) | Mostrar estados de carregando e de busca sem resultados | Implementado | Importante | 07c, 07d |

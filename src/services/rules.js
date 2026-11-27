@@ -175,7 +175,6 @@ export const DEFAULT_FILTERS = {
   levels: [],
   maxKm: 10,
   openOnly: false,
-  womenOnly: false,
   sort: "date", // date | distance | spots
 };
 
@@ -211,7 +210,6 @@ export function filterActivities(list, filters, now = Date.now()) {
     if (f.levels.length && !f.levels.includes(activity.level) && activity.level !== "Todos os níveis") return false;
     if (activity.distanceKm > f.maxKm) return false;
     if (f.openOnly && isFull(activity)) return false;
-    if (f.womenOnly && activity.audience !== "Só mulheres") return false;
     return true;
   });
 
@@ -232,8 +230,7 @@ export function countFilters(filters) {
     (f.period !== "all" ? 1 : 0) +
     (f.levels.length ? 1 : 0) +
     (f.maxKm !== DEFAULT_FILTERS.maxKm ? 1 : 0) +
-    (f.openOnly ? 1 : 0) +
-    (f.womenOnly ? 1 : 0)
+    (f.openOnly ? 1 : 0)
   );
 }
 

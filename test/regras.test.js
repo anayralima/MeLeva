@@ -116,11 +116,6 @@ describe("Filtros do Explorar (RF13)", () => {
     expect(abertas.find((a) => a.id === "futebol-society")).toBeUndefined();
   });
 
-  it("filtro só para mulheres", () => {
-    const result = filterActivities(visibleActivities(fresh()), { womenOnly: true }, now);
-    expect(result.map((a) => a.id)).toEqual(["volei-quadra"]);
-  });
-
   it("busca por texto ignora acentos", () => {
     const result = filterActivities(visibleActivities(fresh()), { query: "natacao" }, now);
     expect(result).toHaveLength(1);

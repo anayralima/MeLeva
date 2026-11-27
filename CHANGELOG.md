@@ -35,6 +35,8 @@ rastreabilidade versão ↔ commit — está em
 
 ### Removed
 
+- Filtro e etiqueta "só para mulheres" (Explorar, cards e Detalhes) e a marcação na atividade
+  de vôlei: decisão do grupo para não haver discriminação, inclusive com mulheres trans.
 - "Sobre" do menu da Landing, botão "Continuar com Google" do Login, botão de e-mail do
   modal "Chame a galera", e opção de público e toggle de custo em Criar atividade (agora é
   só um aviso).

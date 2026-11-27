@@ -155,7 +155,6 @@ export function ActivityRow({ activity, selected, onSelect }) {
         <div className="row-card__tags">
           <span className="activity__sport">{activity.sport}</span>
           {activity.hot && <span className="tag tag--hot tag--xs">{Icon.flame} Em alta</span>}
-          {activity.audience === "Só mulheres" && <span className="tag tag--lilac tag--xs">Só mulheres</span>}
           <StatusTag activity={activity} />
         </div>
         <h3>

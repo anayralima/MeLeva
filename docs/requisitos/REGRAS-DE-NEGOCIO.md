@@ -32,7 +32,7 @@ posição provisória em cada uma. Elas são fáceis de trocar.
 
 | Decisão | O que o MVP faz hoje |
 | --- | --- |
-| Manter atividades "só para mulheres" e como garantir | Mantido só como filtro no Explorar (atividades de exemplo). A opção saiu de Criar atividade. |
+| Manter atividades "só para mulheres" e como garantir | **Decidido:** não existe atividade nem filtro "só para mulheres", para não haver discriminação, inclusive com mulheres trans. |
 | Aprovar o plano Organizador | Aparece apenas como "Em breve". |
 | Modelo de cobrança | Fora do MVP. Nada é cobrado. |
 | Preços R$ 9,90 / R$ 29,90 | Não aparecem no app. |

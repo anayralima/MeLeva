@@ -122,7 +122,6 @@ export default function ActivityDetails({ param }) {
             <LevelTag level={activity.level} />
             {activity.hot && <span className="tag tag--hot">{Icon.flame} Em alta</span>}
             {full && <span className="tag tag--danger">Lotada</span>}
-            {activity.audience === "Só mulheres" && <span className="tag tag--lilac">Só mulheres</span>}
             {canceled && <span className="tag tag--danger">Cancelada</span>}
           </div>
           <h1>{activity.title}</h1>
